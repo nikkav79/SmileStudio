@@ -21,9 +21,6 @@ class Staff(models.Model):
     pass
 
 
-    class Meta:
-        pass
-
 class Vacancy(models.Model):
     "Вакансии студии"
     pass
@@ -72,4 +69,3 @@ class ContactDetails(models.Model):
 class SocialNetworks(models.Model):
     "Ссылки на социальные сети"
     pass
-   
