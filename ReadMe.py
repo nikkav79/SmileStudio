@@ -1,16 +1,13 @@
 #14.06.2021
 # 1. Разделение разработки моделей:
 # Таньчик:
-# StudioDescription
-# Specialization
 # Staff
-# LessonType
 # Costs
 # ContactDetails
-# SocialNetworks
-#
+# SocialNetworks#
 #
 # Николай:
+# StudioDescription
 # Status
 # Vacancy
 # AgeGroups
@@ -18,6 +15,10 @@
 # Lessons
 # Media
 # Reviews
+#
+# Миша:
+# Specialization
+# LessonType
 
 
 
