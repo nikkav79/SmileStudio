@@ -3,7 +3,18 @@ from django.db import models
 
 class StudioDescription(models.Model):
     """Описание студии"""
-    pass
+    about = models.TextField('О нас')
+    philosophy = models.TextField('Философия центра')
+    mission = models.TextField('Наша миссия')
+    sight = models.TextField('Наш взгляд')
+    target = models.TextField('Наша цель')
+
+    def __str__(self):
+        return 'Описание студии'
+
+    class Meta:
+        verbose_name = 'Описание компании'
+        verbose_name_plural = 'Описания компаний'
 
 
 class Specialization(models.Model):
@@ -59,7 +70,16 @@ class AgeLessons(models.Model):
 
 class Costs(models.Model):
     """Стоимость занятий"""
-    pass
+    lessson_type_id = models.ForeignKey()
+    staff_id = models.ForeignKey()
+    cost = models.ForeignKey()
+
+    def __str__(self):
+        return self.cost
+
+    class Meta:
+        verbose_name = 'Стоимость занятия'
+        verbose_name_plural = 'Цены занятий'
 
 
 class Lessons(models.Model):
