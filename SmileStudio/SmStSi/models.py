@@ -1,9 +1,11 @@
 from django.db import models
 
 
+
 class StudioDescription(models.Model):
     """Описание студии"""
     pass
+
 
 
 class Specialization(models.Model):
@@ -44,12 +46,14 @@ class LessonsType(models.Model):
     name = models.CharField('Специализация', max_length=50)
     description = models.TextField('Описание')
 
+
     def __str__(self):
         return self.name
 
     class Meta:
         verbose_name = 'Тип урока'
         verbose_name_plural = 'Типы уроков'
+
 
 
 class AgeLessons(models.Model):
