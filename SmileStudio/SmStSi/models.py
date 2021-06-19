@@ -91,7 +91,7 @@ class ContactDetails(models.Model):
     postcode = models.PositiveBigIntegerField(verbose_name='Индекс')
     phone = PhoneField(blank=True, help_text='Contact phone number', verbose_name='Телефон')
     email = models.EmailField(max_length=254, blank=True, verbose_name='Электронная почта')
-    location = models.SlugField(verbose_name='Расположение на карте', blank=True)
+    location = models.CharField(max_length=150, verbose_name='Расположение на карте', blank=True)
 
     def __str__(self):
         return f'{self.city}, {self.street}, {self.building}'
@@ -105,7 +105,7 @@ class ContactDetails(models.Model):
 class SocialNetworks(models.Model):
     """Ссылки на социальные сети"""
     name = models.CharField(max_length=100, blank=True, verbose_name='Название')
-    link = models.SlugField(max_length=254, blank=True, verbose_name='Ссылка')
+    link = models.CharField(max_length=254, blank=True, verbose_name='Ссылка')
 
     def __str__(self):
         return self.name
