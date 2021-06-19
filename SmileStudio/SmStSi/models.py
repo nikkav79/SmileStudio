@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 class StudioDescription(models.Model):
     """Описание студии"""
     about = models.TextField('О нас')
@@ -8,6 +9,7 @@ class StudioDescription(models.Model):
     mission = models.TextField('Наша миссия')
     sight = models.TextField('Наш взгляд')
     target = models.TextField('Наша цель')
+
 
 
 class Specialization(models.Model):
@@ -44,8 +46,18 @@ class AgeGroups(models.Model):
 
 class LessonsType(models.Model):
     """Тип занятий"""
+
     name = models.CharField(max_length=150)
     description = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Тип урока'
+        verbose_name_plural = 'Типы уроков'
+
+
 
 
 class AgeLessons(models.Model):
