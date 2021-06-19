@@ -57,7 +57,7 @@ class Costs(models.Model):
     """Стоимость занятий"""
     lessson_type_id = models.ForeignKey(Lessons, models.CASCADE())
     staff_id = models.ForeignKey(Staff, models.CASCADE())
-    cost = models.FloatField()
+    cost = models.DecimalField(10, 2)
 
 
 class Lessons(models.Model):
