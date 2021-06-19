@@ -41,7 +41,7 @@ class AgeGroups(models.Model):
 
 class LessonsType(models.Model):
     """Тип занятий"""
-    name = models.CharField('Специализация', max_length=50)
+    name = models.CharField('Тип урока', max_length=50)
     description = models.TextField('Описание')
 
     def __str__(self):
