@@ -1,68 +1,89 @@
 from django.db import models
 
+
 class StudioDescription(models.Model):
-    "Описание студии"
+    """Описание студии"""
     pass
 
 
 class Specialization(models.Model):
-    "Специализации/должности"
-    pass
+    """Специализации/должности"""
+    name = models.CharField('Специализация', max_length=50)
+    description = models.TextField('Описание')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Специализация'
+        verbose_name_plural = 'Специализации'
+
 
 class Status(models.Model):
-    "Характер договора"
+    """Характер договора"""
     pass
-
 
 
 class Staff(models.Model):
-    "Сотрудники студии"
+    """Сотрудники студии"""
     pass
 
 
 class Vacancy(models.Model):
-    "Вакансии студии"
+    """Вакансии студии"""
     pass
-
 
 
 class AgeGroups(models.Model):
-    "Возрастные группы"
+    """Возрастные группы"""
     pass
+
 
 class LessonsType(models.Model):
-    "Тип занятий"
-    pass
+    """Тип занятий"""
+    name = models.CharField('Специализация', max_length=50)
+    description = models.TextField('Описание')
+
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Тип урока'
+        verbose_name_plural = 'Типы уроков'
+
+
 
 class AgeLessons(models.Model):
-    "Таблица связи возрастной группы и типа занятий"
+    """Таблица связи возрастной группы и типа занятий"""
     pass
+
 
 class Costs(models.Model):
-    "Стоимость занятий"
+    """Стоимость занятий"""
     pass
-
 
 
 class Lessons(models.Model):
-    "Занятия"
+    """Занятия"""
     pass
+
 
 class Media(models.Model):
-    "Фото и видеоматериалы, их краткое описание"
+    """Фото и видеоматериалы, их краткое описание"""
     pass
-
 
 
 class Reviews(models.Model):
-    "Отзывы о преподавателях и студии"
+    """Отзывы о преподавателях и студии"""
     pass
 
 
 class ContactDetails(models.Model):
-    "Контактные данные студии"
+    """Контактные данные студии"""
     pass
 
+
 class SocialNetworks(models.Model):
-    "Ссылки на социальные сети"
+    """Ссылки на социальные сети"""
     pass
