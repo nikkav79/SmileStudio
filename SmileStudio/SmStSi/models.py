@@ -4,21 +4,18 @@ from django.db import models
 
 class StudioDescription(models.Model):
     """Описание студии"""
-    pass
+    about = models.TextField('О нас')
+    philosophy = models.TextField('Философия центра')
+    mission = models.TextField('Наша миссия')
+    sight = models.TextField('Наш взгляд')
+    target = models.TextField('Наша цель')
 
 
 
 class Specialization(models.Model):
     """Специализации/должности"""
-    name = models.CharField('Специализация', max_length=50)
-    description = models.TextField('Описание')
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Специализация'
-        verbose_name_plural = 'Специализации'
+    name = models.CharField(max_length=150)
+    description = models.CharField(max_length=150)
 
 
 class Status(models.Model):
@@ -28,7 +25,13 @@ class Status(models.Model):
 
 class Staff(models.Model):
     """Сотрудники студии"""
-    pass
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    experience = models.CharField(max_length=150)
+    education = models.CharField(max_length=150)
+    specilaization_id = models.ForeignKey(Specialization)
+    status_id = models.ForeignKey(Status)
+    ad_information = models.TextField()
 
 
 class Vacancy(models.Model):
@@ -43,9 +46,9 @@ class AgeGroups(models.Model):
 
 class LessonsType(models.Model):
     """Тип занятий"""
-    name = models.CharField('Специализация', max_length=50)
-    description = models.TextField('Описание')
 
+    name = models.CharField(max_length=150)
+    description = models.CharField(max_length=150)
 
     def __str__(self):
         return self.name
@@ -56,6 +59,7 @@ class LessonsType(models.Model):
 
 
 
+
 class AgeLessons(models.Model):
     """Таблица связи возрастной группы и типа занятий"""
     pass
@@ -63,7 +67,9 @@ class AgeLessons(models.Model):
 
 class Costs(models.Model):
     """Стоимость занятий"""
-    pass
+    lessson_type_id = models.ForeignKey(Lessons, models.CASCADE())
+    staff_id = models.ForeignKey(Staff, models.CASCADE())
+    cost = models.DecimalField(10, 2)
 
 
 class Lessons(models.Model):
@@ -83,9 +89,16 @@ class Reviews(models.Model):
 
 class ContactDetails(models.Model):
     """Контактные данные студии"""
-    pass
+    city = models.CharField(max_length=150)
+    district = models.CharField(max_length=150)
+    street = models.CharField(max_length=150)
+    postcode = models.CharField(max_length=50)
+    phone = models.CharField(max_length=100)
+    email = models.EmailField()
+    location = models.TextField()
 
 
 class SocialNetworks(models.Model):
     """Ссылки на социальные сети"""
-    pass
+    name = models.CharField(max_length=150)
+    links = models.TextField()
