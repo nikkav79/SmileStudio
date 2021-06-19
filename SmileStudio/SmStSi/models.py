@@ -1,5 +1,4 @@
 from django.db import models
-from django.db import models
 
 class StudioDescription(models.Model):
     "Описание студии"
@@ -34,8 +33,6 @@ class AgeGroups(models.Model):
 class LessonsType(models.Model):
     "Тип занятий"
     pass
-
-
 
 class AgeLessons(models.Model):
     "Таблица связи возрастной группы и типа занятий"
