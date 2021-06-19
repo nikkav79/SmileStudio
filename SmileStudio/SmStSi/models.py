@@ -82,7 +82,7 @@ class ContactDetails(models.Model):
     street = models.CharField(max_length=150)
     postcode = models.CharField(max_length=50)
     phone = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
+    email = models.EmailField()
     location = models.TextField()
 
 
