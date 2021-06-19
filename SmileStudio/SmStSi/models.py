@@ -1,9 +1,11 @@
 from django.db import models
 
 
+
 class StudioDescription(models.Model):
     """Описание студии"""
     pass
+
 
 
 class Specialization(models.Model):
