@@ -2,7 +2,6 @@ from django.db import models
 from phone_field import PhoneField
 
 
-
 class StudioDescription(models.Model):
     """Описание студии"""
     about = models.TextField('О нас')
@@ -10,7 +9,6 @@ class StudioDescription(models.Model):
     mission = models.TextField('Наша миссия')
     sight = models.TextField('Наш взгляд')
     target = models.TextField('Наша цель')
-
 
 
 class Specialization(models.Model):
@@ -41,6 +39,7 @@ class Status(models.Model):
 
 class Staff(models.Model):
     """Сотрудники студии"""
+
     first_name = models.CharField(max_length=100, verbose_name='Имя')
     last_name = models.CharField(max_length=100, verbose_name='Фамилия')
     experience = models.CharField(max_length=150, verbose_name='Опыт')
@@ -100,6 +99,7 @@ class LessonsType(models.Model):
         verbose_name_plural = 'Типы уроков'
 
 
+
 class Costs(models.Model):
     """Стоимость занятий"""
     lesson_type_id = models.ForeignKey(LessonsType, on_delete=models.CASCADE)
@@ -111,7 +111,6 @@ class Costs(models.Model):
         verbose_name_plural = 'Стоимости'
 
 
-###
 class Lessons(models.Model):
     """Занятия"""
     lesson_type_id = models.ForeignKey(LessonsType, on_delete=models.CASCADE)
@@ -127,7 +126,6 @@ class Lessons(models.Model):
         verbose_name_plural = 'Занятия'
 
 
-###
 class Media(models.Model):
     """Фото и видеоматериалы, их краткое описание"""
     lesson_id = models.ForeignKey(Lessons, on_delete=models.CASCADE)
@@ -180,7 +178,6 @@ class ContactDetails(models.Model):
         ordering = ['city']
 
 
-
 class SocialNetworks(models.Model):
     """Ссылки на социальные сети"""
 
@@ -195,4 +192,3 @@ class SocialNetworks(models.Model):
         verbose_name = 'Социальная сеть'
         verbose_name_plural = 'Социальные сети'
         ordering = ['name']
-
