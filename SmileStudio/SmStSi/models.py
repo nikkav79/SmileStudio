@@ -65,7 +65,7 @@ class Vacancy(models.Model):
     responsibilities = models.TextField(verbose_name='Обязанности')
     requirements = models.TextField(verbose_name='Требования')
     conditions = models.TextField(verbose_name='Условия')
-    date_add = models.DateTimeField(auto_now=True, auto_now_add=True, verbose_name='Дата')
+    date_add = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     is_active = models.BooleanField(default=True, verbose_name='Актив')
 
     class Meta:
@@ -98,13 +98,14 @@ class LessonsType(models.Model):
         verbose_name = 'Тип урока'
         verbose_name_plural = 'Типы уроков'
 
-
+class Users(models.Model):
+    pass
 
 class Costs(models.Model):
     """Стоимость занятий"""
     lesson_type_id = models.ForeignKey(LessonsType, on_delete=models.CASCADE)
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
-    cost = models.DecimalField(10, 2, verbose_name='Стоимость')
+    cost = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
         verbose_name = 'Стоимость'
@@ -129,8 +130,8 @@ class Lessons(models.Model):
 class Media(models.Model):
     """Фото и видеоматериалы, их краткое описание"""
     lesson_id = models.ForeignKey(Lessons, on_delete=models.CASCADE)
-    staff_id = models.ManyToManyField(Staff, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now=True, auto_now_add=True, verbose_name='Дата')
+    staff_id = models.ManyToManyField(Staff)
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     photo_link = models.ImageField(upload_to='post_files', blank=False, null=False)
     video_file = models.FileField(upload_to='post_files',blank=True,null=True)
 
@@ -145,7 +146,7 @@ class Reviews(models.Model):
     user_id = models.ForeignKey('Users', on_delete=models.CASCADE)
     lesson_id = models.ForeignKey(Lessons, on_delete=models.CASCADE)
     staff_id = models.ManyToManyField(Staff)
-    date = models.DateTimeField(auto_now=True, auto_now_add=True, verbose_name='Дата')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     message = models.TextField()
     star_choice_1 = models.CharField(max_length=5, verbose_name='Рейтинг1')
     star_choice_2 = models.CharField(max_length=5, verbose_name='Рейтинг2')
