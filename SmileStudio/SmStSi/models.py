@@ -1,5 +1,6 @@
 from django.db import models
 from phone_field import PhoneField
+from django.conf import settings
 
 
 class StudioDescription(models.Model):
@@ -23,6 +24,7 @@ class Specialization(models.Model):
     class Meta:
         verbose_name = 'Специализация'
         verbose_name_plural = 'Специализации'
+
 
 ###
 class Status(models.Model):
@@ -56,6 +58,8 @@ class Staff(models.Model):
         verbose_name = 'Сотрудник'
         verbose_name_plural = 'Сотрудники'
         ordering = ['last_name', 'first_name']
+
+
 ###
 class Vacancy(models.Model):
     """Вакансии студии"""
@@ -65,13 +69,14 @@ class Vacancy(models.Model):
     responsibilities = models.TextField(verbose_name='Обязанности')
     requirements = models.TextField(verbose_name='Требования')
     conditions = models.TextField(verbose_name='Условия')
-    date_add = models.DateTimeField(auto_now=True, auto_now_add=True, verbose_name='Дата')
+    date_add = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     is_active = models.BooleanField(default=True, verbose_name='Актив')
 
     class Meta:
         verbose_name = 'Вакансия'
         verbose_name_plural = 'Вакансии'
         ordering = ['date_add']
+
 
 ###
 class AgeGroups(models.Model):
@@ -86,6 +91,7 @@ class AgeGroups(models.Model):
         verbose_name = 'Возрастная группа'
         verbose_name_plural = 'Возрастные группы'
 
+
 class LessonsType(models.Model):
     """Тип занятий"""
     name = models.CharField(max_length=150, verbose_name='Наименование')
@@ -99,12 +105,15 @@ class LessonsType(models.Model):
         verbose_name_plural = 'Типы уроков'
 
 
+class Users(models.Model):
+    pass
+
 
 class Costs(models.Model):
     """Стоимость занятий"""
     lesson_type_id = models.ForeignKey(LessonsType, on_delete=models.CASCADE)
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
-    cost = models.DecimalField(10, 2, verbose_name='Стоимость')
+    cost = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
         verbose_name = 'Стоимость'
@@ -129,15 +138,16 @@ class Lessons(models.Model):
 class Media(models.Model):
     """Фото и видеоматериалы, их краткое описание"""
     lesson_id = models.ForeignKey(Lessons, on_delete=models.CASCADE)
-    staff_id = models.ManyToManyField(Staff, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now=True, auto_now_add=True, verbose_name='Дата')
+    staff_id = models.ManyToManyField(Staff)
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     photo_link = models.ImageField(upload_to='post_files', blank=False, null=False)
-    video_file = models.FileField(upload_to='post_files',blank=True,null=True)
+    video_file = models.FileField(upload_to='post_files', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Медиа'
         verbose_name_plural = 'Медиа'
-        ordering = ['date'] #Как сделать, что бы по названию занятия или по фамилии педагога?
+        ordering = ['date']  # Как сделать, что бы по названию занятия или по фамилии педагога?
+
 
 ###
 class Reviews(models.Model):
@@ -145,7 +155,7 @@ class Reviews(models.Model):
     user_id = models.ForeignKey('Users', on_delete=models.CASCADE)
     lesson_id = models.ForeignKey(Lessons, on_delete=models.CASCADE)
     staff_id = models.ManyToManyField(Staff)
-    date = models.DateTimeField(auto_now=True, auto_now_add=True, verbose_name='Дата')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     message = models.TextField()
     star_choice_1 = models.CharField(max_length=5, verbose_name='Рейтинг1')
     star_choice_2 = models.CharField(max_length=5, verbose_name='Рейтинг2')
@@ -183,7 +193,8 @@ class SocialNetworks(models.Model):
 
     name = models.CharField(max_length=100, blank=True, verbose_name='Название')
     link = models.CharField(max_length=254, blank=True, verbose_name='Ссылка')
-    #link_1 = models.SlugField(max_length=254, blank=True, verbose_name='Ссылка')
+
+    # link_1 = models.SlugField(max_length=254, blank=True, verbose_name='Ссылка')
 
     def __str__(self):
         return self.name
@@ -192,3 +203,22 @@ class SocialNetworks(models.Model):
         verbose_name = 'Социальная сеть'
         verbose_name_plural = 'Социальные сети'
         ordering = ['name']
+
+
+class NewsFlow(models.Model):
+    """ Новости портала """
+
+    created = models.DateTimeField(auto_now=True, verbose_name='Дата создания')
+    modified = models.DateTimeField(auto_now_add=True, verbose_name='Дата изменения')
+    title = models.CharField(max_length=150, verbose_name='Заголовок')
+    digest = models.CharField(max_length=200, verbose_name='Краткое содержание')
+    content = models.TextField(verbose_name='Контент')
+    media_url = models.URLField(default='', verbose_name='Медиассылка')  # вот тут надо подумать нужно ли
+    media = models.ForeignKey(Media, on_delete=models.CASCADE, verbose_name='Медиа')
+    topic = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='Тематика')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Автор')
+
+    class Meta:
+        ordering = ['-modified']  # сортировка
+        verbose_name = 'Публикация'
+        verbose_name_plural = 'Публикации'
