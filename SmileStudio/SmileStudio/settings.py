@@ -82,9 +82,9 @@ DATABASES = {
         },
         'NAME': 'SmileStudio',
         'USER': 'django',
-        'PASSWORD': '12345',
+        'PASSWORD': 'password',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': '3333',
     }
 }
 
