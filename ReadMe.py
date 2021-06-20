@@ -8,7 +8,7 @@
 # после проверки кода в develop информация переносится в main
 
 
-# 14.06.2021 -20.06.2021
+#14.06.2021
 # 1. Разработка  models.py
 # Таньчик:
 # ContactDetails
@@ -32,15 +32,14 @@
 # Costs
 #
 #
-# 20.06.21-23.06.21
 # 2. Заполнение данных БД
 # Таньчик:
 # ContactDetails
-# SocialNetworks#
+# SocialNetworks
+# Status
+# StudioDescription
 #
 # Николай:
-# StudioDescription
-# Status
 # Vacancy
 # AgeGroups
 # AgeLessons (Не уверен что она нужна)
@@ -54,6 +53,4 @@
 # LessonType
 # Staff
 # Costs
-
-
 
