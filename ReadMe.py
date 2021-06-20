@@ -7,45 +7,8 @@
 # Из веток разработчиков dev_<имя разработчика> данные переносятся в develop.
 # после проверки кода в develop информация переносится в main
 
-# 20.06.2021 - 27.06.2021
-# 2. Заполнение данных БД
-# Описание задачи: требуется заполнить БД данными, которые нам будет предоставлять закачик. Процесс получения исходных
-# данных затянется приблизительно на 7 дней. Данные возможно будет внести через админку, но для лучшего понимания
-# материала - лучше через код.
-#
-# НЕ будут получены в течении 7 дней:
-# - фотоматериалы
-# - видеоматериалы
-# - данные по таблице reviews
-# - часть ссылок на социальные сети
-# Эти данные будут получены под запуск проекта
 
-# Таньчик:
-# ContactDetails
-# SocialNetworks
-# Status
-# StudioDescription
-#
-# Николай:
-# Vacancy
-# AgeLessons
-# Lessons
-# Media
-# Reviews
-#
-# Рома:
-# AgeGroups
-# Flow (News)
-# LessonType
-#
-# Миша:
-# Specialization
-# Staff
-# Costs
-#
-# 3. Разработка представлений и шаблонов
-# Информация появится в ближайшее время
-#14.06.2021
+# 14.06.2021 -20.06.2021
 # 1. Разработка  models.py
 # Таньчик:
 # ContactDetails
@@ -56,11 +19,11 @@
 # Status
 # Vacancy
 # AgeGroups
-# AgeLessons
+# AgeLessons (Не уверен что она нужна)
 # Lessons
 # Media
 # Reviews
-#
+# Flow (News)
 #
 # Миша:
 # Specialization
@@ -68,10 +31,29 @@
 # Staff
 # Costs
 #
-# Рома:
+#
+# 20.06.21-23.06.21
+# 2. Заполнение данных БД
+# Таньчик:
+# ContactDetails
+# SocialNetworks#
+#
+# Николай:
+# StudioDescription
+# Status
+# Vacancy
+# AgeGroups
+# AgeLessons (Не уверен что она нужна)
+# Lessons
+# Media
+# Reviews
 # Flow (News)
 #
-
+# Миша:
+# Specialization
+# LessonType
+# Staff
+# Costs
 
 
 
