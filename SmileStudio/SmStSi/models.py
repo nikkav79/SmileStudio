@@ -1,6 +1,6 @@
 from django.db import models
 from phone_field import PhoneField
-from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class StudioDescription(models.Model):
@@ -25,6 +25,7 @@ class Specialization(models.Model):
         verbose_name = 'Специализация'
         verbose_name_plural = 'Специализации'
 
+
 ###
 class Status(models.Model):
     """Характер договора"""
@@ -40,12 +41,13 @@ class Status(models.Model):
 
 class Staff(models.Model):
     """Сотрудники студии"""
+
     first_name = models.CharField(max_length=100, verbose_name='Имя')
     last_name = models.CharField(max_length=100, verbose_name='Фамилия')
     experience = models.CharField(max_length=150, verbose_name='Опыт')
     education = models.CharField(max_length=150, verbose_name='Образование')
-    specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE)
-    status = models.ForeignKey(Status, on_delete=models.CASCADE)
+    specialization_id = models.ForeignKey(Specialization, on_delete=models.CASCADE)
+    status_id = models.ForeignKey(Status, on_delete=models.CASCADE)
     ad_information = models.TextField()
     is_active = models.BooleanField(default=True, verbose_name='Актив')
 
@@ -57,11 +59,12 @@ class Staff(models.Model):
         verbose_name_plural = 'Сотрудники'
         ordering = ['last_name', 'first_name']
 
+
 ###
 class Vacancy(models.Model):
     """Вакансии студии"""
-    specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE)
-    status = models.ForeignKey(Status, on_delete=models.CASCADE)
+    specialization_id = models.ForeignKey(Specialization, on_delete=models.CASCADE)
+    status_id = models.ForeignKey(Status, on_delete=models.CASCADE)
     description = models.TextField(verbose_name='Описание')
     responsibilities = models.TextField(verbose_name='Обязанности')
     requirements = models.TextField(verbose_name='Требования')
@@ -73,6 +76,7 @@ class Vacancy(models.Model):
         verbose_name = 'Вакансия'
         verbose_name_plural = 'Вакансии'
         ordering = ['date_add']
+
 
 ###
 class AgeGroups(models.Model):
@@ -101,11 +105,14 @@ class LessonsType(models.Model):
         verbose_name_plural = 'Типы уроков'
 
 
+class Users(models.Model):
+    pass
+
 
 class Costs(models.Model):
     """Стоимость занятий"""
-    lesson_type = models.ForeignKey(LessonsType, on_delete=models.CASCADE)
-    staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    lesson_type_id = models.ForeignKey(LessonsType, on_delete=models.CASCADE)
+    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
     cost = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
@@ -115,8 +122,8 @@ class Costs(models.Model):
 
 class Lessons(models.Model):
     """Занятия"""
-    lesson_type = models.ForeignKey(LessonsType, on_delete=models.CASCADE)
-    cost = models.ForeignKey(Costs, on_delete=models.CASCADE)
+    lesson_type_id = models.ForeignKey(LessonsType, on_delete=models.CASCADE)
+    cost_id = models.ForeignKey(Costs, on_delete=models.CASCADE)
     duration = models.CharField(max_length=50, verbose_name='Длительность')
     days = models.CharField(max_length=100, verbose_name='Дни')
     hours = models.CharField(max_length=100, verbose_name='Часы')
@@ -141,10 +148,11 @@ class Media(models.Model):
         verbose_name_plural = 'Медиа'
         ordering = ['date']  # Как сделать, что бы по названию занятия или по фамилии педагога?
 
+
 ###
 class Reviews(models.Model):
     """Отзывы о преподавателях и студии"""
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey('Users', on_delete=models.CASCADE)
     lesson_id = models.ForeignKey(Lessons, on_delete=models.CASCADE)
     staff_id = models.ManyToManyField(Staff)
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
@@ -161,6 +169,7 @@ class Reviews(models.Model):
 
 class ContactDetails(models.Model):
     """Контактные данные студии"""
+
     city = models.CharField(max_length=100, verbose_name='Город')
     district = models.CharField(max_length=150, verbose_name='Район')
     street = models.CharField(max_length=150, verbose_name='Улица')
@@ -181,6 +190,7 @@ class ContactDetails(models.Model):
 
 class SocialNetworks(models.Model):
     """Ссылки на социальные сети"""
+
     name = models.CharField(max_length=100, blank=True, verbose_name='Название')
     link = models.CharField(max_length=254, blank=True, verbose_name='Ссылка')
 
@@ -206,7 +216,7 @@ class NewsFlow(models.Model):
     media_url = models.URLField(default='', verbose_name='Медиассылка')  # вот тут надо подумать нужно ли
     media = models.ForeignKey(Media, on_delete=models.CASCADE, verbose_name='Медиа')
     topic = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='Тематика')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Автор')
 
     class Meta:
         ordering = ['-modified']  # сортировка
