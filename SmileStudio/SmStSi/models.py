@@ -1,5 +1,6 @@
 from django.db import models
 from phone_field import PhoneField
+from django.contrib.auth.models import User
 
 
 class StudioDescription(models.Model):
@@ -98,8 +99,7 @@ class LessonsType(models.Model):
         verbose_name = 'Тип урока'
         verbose_name_plural = 'Типы уроков'
 
-class Users(models.Model):
-    pass
+
 
 class Costs(models.Model):
     """Стоимость занятий"""
@@ -143,7 +143,7 @@ class Media(models.Model):
 ###
 class Reviews(models.Model):
     """Отзывы о преподавателях и студии"""
-    user_id = models.ForeignKey('Users', on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     lesson_id = models.ForeignKey(Lessons, on_delete=models.CASCADE)
     staff_id = models.ManyToManyField(Staff)
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
@@ -193,3 +193,21 @@ class SocialNetworks(models.Model):
         verbose_name = 'Социальная сеть'
         verbose_name_plural = 'Социальные сети'
         ordering = ['name']
+
+class NewsFlow(models.Model):
+    """ Новости портала """
+
+    created = models.DateTimeField(auto_now=True, verbose_name='Дата создания')
+    modified = models.DateTimeField(auto_now_add=True, verbose_name='Дата изменения')
+    title = models.CharField(max_length=150, verbose_name='Заголовок')
+    digest = models.CharField(max_length=200, verbose_name='Краткое содержание')
+    content = models.TextField(verbose_name='Контент')
+    media_url = models.URLField(default='', verbose_name='Медиассылка')  # вот тут надо подумать нужно ли
+    media = models.ForeignKey(Media, on_delete=models.CASCADE, verbose_name='Медиа')
+    topic = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='Тематика')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
+
+    class Meta:
+        ordering = ['-modified']  # сортировка
+        verbose_name = 'Публикация'
+        verbose_name_plural = 'Публикации'
