@@ -44,8 +44,8 @@ class Staff(models.Model):
     last_name = models.CharField(max_length=100, verbose_name='Фамилия')
     experience = models.CharField(max_length=150, verbose_name='Опыт')
     education = models.CharField(max_length=150, verbose_name='Образование')
-    specialization_id = models.ForeignKey(Specialization, on_delete=models.CASCADE)
-    status_id = models.ForeignKey(Status, on_delete=models.CASCADE)
+    specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE)
+    status = models.ForeignKey(Status, on_delete=models.CASCADE)
     ad_information = models.TextField()
     is_active = models.BooleanField(default=True, verbose_name='Актив')
 
@@ -60,8 +60,8 @@ class Staff(models.Model):
 ###
 class Vacancy(models.Model):
     """Вакансии студии"""
-    specialization_id = models.ForeignKey(Specialization, on_delete=models.CASCADE)
-    status_id = models.ForeignKey(Status, on_delete=models.CASCADE)
+    specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE)
+    status = models.ForeignKey(Status, on_delete=models.CASCADE)
     description = models.TextField(verbose_name='Описание')
     responsibilities = models.TextField(verbose_name='Обязанности')
     requirements = models.TextField(verbose_name='Требования')
@@ -103,8 +103,8 @@ class LessonsType(models.Model):
 
 class Costs(models.Model):
     """Стоимость занятий"""
-    lesson_type_id = models.ForeignKey(LessonsType, on_delete=models.CASCADE)
-    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    lesson_type = models.ForeignKey(LessonsType, on_delete=models.CASCADE)
+    staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
     cost = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
@@ -114,7 +114,8 @@ class Costs(models.Model):
 
 class Lessons(models.Model):
     """Занятия"""
-    lesson_type_id = models.ForeignKey(LessonsType, on_delete=models.CASCADE)
+    lesson_type = models.ForeignKey(LessonsType, on_delete=models.CASCADE)
+    cost = models.ForeignKey(Costs, on_delete=models.CASCADE)
     duration = models.CharField(max_length=50, verbose_name='Длительность')
     days = models.CharField(max_length=100, verbose_name='Дни')
     hours = models.CharField(max_length=100, verbose_name='Часы')
