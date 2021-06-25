@@ -101,6 +101,7 @@ class LessonsType(models.Model):
         verbose_name_plural = 'Типы уроков'
 
 
+
 class Costs(models.Model):
     """Стоимость занятий"""
     lesson_type = models.ForeignKey(LessonsType, on_delete=models.CASCADE)
@@ -196,6 +197,7 @@ class SocialNetworks(models.Model):
 
 class NewsFlow(models.Model):
     """ Новости портала """
+
     created = models.DateTimeField(auto_now=True, verbose_name='Дата создания')
     modified = models.DateTimeField(auto_now_add=True, verbose_name='Дата изменения')
     title = models.CharField(max_length=150, verbose_name='Заголовок')
@@ -209,4 +211,4 @@ class NewsFlow(models.Model):
     class Meta:
         ordering = ['-modified']  # сортировка
         verbose_name = 'Публикация'
-        verbose_name_plural = 'Публикации'
+        verbose_name_plural = 'Публикации 
