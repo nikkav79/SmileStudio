@@ -130,8 +130,8 @@ class Lessons(models.Model):
 
 class Media(models.Model):
     """Фото и видеоматериалы, их краткое описание"""
-    lesson_id = models.ForeignKey(Lessons, on_delete=models.CASCADE)
-    staff_id = models.ManyToManyField(Staff)
+    lesson = models.ForeignKey(Lessons, on_delete=models.CASCADE)
+    staff = models.ManyToManyField(Staff)
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     photo_link = models.ImageField(upload_to='post_files', blank=False, null=False)
     video_file = models.FileField(upload_to='post_files', blank=True, null=True)
@@ -144,9 +144,9 @@ class Media(models.Model):
 ###
 class Reviews(models.Model):
     """Отзывы о преподавателях и студии"""
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    lesson_id = models.ForeignKey(Lessons, on_delete=models.CASCADE)
-    staff_id = models.ManyToManyField(Staff)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lessons, on_delete=models.CASCADE)
+    staff = models.ManyToManyField(Staff)
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     message = models.TextField()
     star_choice_1 = models.CharField(max_length=5, verbose_name='Рейтинг1')
@@ -211,4 +211,4 @@ class NewsFlow(models.Model):
     class Meta:
         ordering = ['-modified']  # сортировка
         verbose_name = 'Публикация'
-        verbose_name_plural = 'Публикации 
+        verbose_name_plural = 'Публикации'
