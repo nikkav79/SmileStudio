@@ -1,3 +1,8 @@
+# Страница Instagram центра:
+# https://www.instagram.com/smiles.zel/?hl=ru
+
+
+
 # Работа с Git
 # Основная ветка проекта - main
 # Рабочая ветка - develop
