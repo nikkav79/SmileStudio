@@ -1,0 +1,44 @@
+
+.logo-font
+    font-family: 'Indie Flower', cursive
+    font-size: 20px
+    z-index: 3
+.header
+    margin-top: 28px
+    font-family: 'Roboto', sans-serif
+
+    &__logo
+        position: relative
+        display: flex
+        align-items: center
+
+    &__cirlce
+        position: absolute
+        background: #ffffff
+        clip-path: circle(50%)
+        height: 8em
+        width: 8em
+        left: -3em
+
+    &__wrap
+        box-shadow: 0px 5px 45px -6px rgba(34, 60, 80, 0.2)
+        padding: 10px 0
+
+    &__links
+        display: flex
+        list-style: none
+
+        &>li:not(:last-child)
+            margin-right: 33px
+
+    &__link
+        text-decoration: none
+        list-style: none
+        text-transform: uppercase
+        color: #585858
+
+    &__top
+        +spaceBetween
+.fas
+    color: #ffc56d
+    z-index: 3
