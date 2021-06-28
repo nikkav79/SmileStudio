@@ -11,6 +11,10 @@ class StudioDescription(models.Model):
     sight = models.TextField('Наш взгляд')
     target = models.TextField('Наша цель')
 
+    class Meta:
+        verbose_name = 'О Нас'
+        verbose_name_plural = 'О Нас'
+
 
 class Specialization(models.Model):
     """Специализации/должности"""
