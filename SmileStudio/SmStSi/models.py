@@ -10,6 +10,7 @@ class StudioDescription(models.Model):
     mission = models.TextField(verbose_name='Наша миссия')
     sight = models.TextField(verbose_name='Наш взгляд')
     target = models.TextField(verbose_name='Наша цель')
+    logotype = models.ForeignKey(Media, verbose_name='Логотип')
 
     class Meta:
         verbose_name = 'О Нас'
@@ -172,6 +173,7 @@ class ContactDetails(models.Model):
     phone = PhoneField(blank=True, help_text='Contact phone number', verbose_name='Телефон')
     email = models.EmailField(max_length=254, blank=True, verbose_name='Электронная почта')
     location = models.CharField(max_length=150, verbose_name='Расположение на карте', blank=True, null=True)
+
 
     def __str__(self):
         return f'{self.city}, {self.street}, {self.building}'
