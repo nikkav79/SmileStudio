@@ -3,20 +3,6 @@ from phone_field import PhoneField
 from django.contrib.auth.models import User
 
 
-class StudioDescription(models.Model):
-    """Описание студии"""
-    about = models.TextField(verbose_name='О нас', blank=True, null=True)
-    philosophy = models.TextField(verbose_name='Философия центра', blank=True, null=True)
-    mission = models.TextField(verbose_name='Наша миссия', blank=True, null=True)
-    sight = models.TextField(verbose_name='Наш взгляд', blank=True, null=True)
-    target = models.TextField(verbose_name='Наша цель', blank=True, null=True)
-    logotype = models.ForeignKey(Media, verbose_name='Логотип', blank=True, null=True)
-
-    class Meta:
-        verbose_name = 'О Нас'
-        verbose_name_plural = 'О Нас'
-
-
 class Specialization(models.Model):
     """Специализации/должности"""
     name = models.CharField(max_length=150, verbose_name='Наименование')
@@ -97,6 +83,7 @@ class LessonsType(models.Model):
     """Тип занятий"""
     name = models.CharField(max_length=150, verbose_name='Наименование')
     description = models.CharField(max_length=150, verbose_name='Описание', blank=True, null=True)
+    improves_skills = models.CharField(max_length=255, verbose_name='Развивающиеся навыки', blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -135,7 +122,7 @@ class Lessons(models.Model):
 class Media(models.Model):
     """Фото и видеоматериалы, их краткое описание"""
     lesson = models.ForeignKey(Lessons, on_delete=models.CASCADE, verbose_name='Занятие', blank=True, null=True)
-    staff = models.ManyToManyField(Staff, verbose_name='Сотрудник', blank=True, null=True)
+    staff = models.ManyToManyField(Staff, verbose_name='Сотрудник')
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     photo_link = models.ImageField(upload_to='post_files', blank=False, null=False, verbose_name='Ссылка на фото')
     video_file = models.FileField(upload_to='post_files', blank=True, null=True, verbose_name='Ссылка на видео')
@@ -146,6 +133,20 @@ class Media(models.Model):
         verbose_name = 'Медиа'
         verbose_name_plural = 'Медиа'
         ordering = ['date']  # Как сделать, что бы по названию занятия или по фамилии педагога?
+
+
+class StudioDescription(models.Model):
+    """Описание студии"""
+    about = models.TextField(verbose_name='О нас', blank=True, null=True)
+    philosophy = models.TextField(verbose_name='Философия центра', blank=True, null=True)
+    mission = models.TextField(verbose_name='Наша миссия', blank=True, null=True)
+    sight = models.TextField(verbose_name='Наш взгляд', blank=True, null=True)
+    target = models.TextField(verbose_name='Наша цель', blank=True, null=True)
+    logotype = models.ForeignKey(Media, on_delete=models.CASCADE, verbose_name='Логотип', blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'О Нас'
+        verbose_name_plural = 'О Нас'
 
 ###
 class Reviews(models.Model):
@@ -175,6 +176,11 @@ class ContactDetails(models.Model):
     phone = PhoneField(blank=True, help_text='Contact phone number', verbose_name='Телефон')
     email = models.EmailField(max_length=254, blank=True, verbose_name='Электронная почта')
     location = models.CharField(max_length=150, verbose_name='Расположение на карте', blank=True, null=True)
+    requisites = models.CharField(max_length=255, verbose_name='Реквизиты', blank=True, null=True)
+    starting_work_weekdays = models.TimeField(verbose_name='Начало работы в будние', blank=True, null=True)
+    finishing_work_weekdays = models.TimeField(verbose_name='Конец работы в будние', blank=True, null=True)
+    starting_work_weekends = models.TimeField(verbose_name='Начало работы по выходным', blank=True, null=True)
+    finishing_work_weekends = models.TimeField(verbose_name='Конец работы по выходным', blank=True, null=True)
 
     def __str__(self):
         return f'{self.city}, {self.street}, {self.building}'
@@ -200,7 +206,7 @@ class SocialNetworks(models.Model):
         ordering = ['name']
 
 
-class News(models.Model):
+class NewsFlow(models.Model):
     """ Новости портала """
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     modified = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
