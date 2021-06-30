@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 
 class StudioDescription(models.Model):
     """Описание студии"""
-    about = models.TextField(verbose_name='О нас')
-    philosophy = models.TextField(verbose_name='Философия центра')
-    mission = models.TextField(verbose_name='Наша миссия')
-    sight = models.TextField(verbose_name='Наш взгляд')
-    target = models.TextField(verbose_name='Наша цель')
-    logotype = models.ForeignKey(Media, verbose_name='Логотип')
+    about = models.TextField(verbose_name='О нас', blank=True, null=True)
+    philosophy = models.TextField(verbose_name='Философия центра', blank=True, null=True)
+    mission = models.TextField(verbose_name='Наша миссия', blank=True, null=True)
+    sight = models.TextField(verbose_name='Наш взгляд', blank=True, null=True)
+    target = models.TextField(verbose_name='Наша цель', blank=True, null=True)
+    logotype = models.ForeignKey(Media, verbose_name='Логотип', blank=True, null=True)
 
     class Meta:
         verbose_name = 'О Нас'
@@ -20,7 +20,7 @@ class StudioDescription(models.Model):
 class Specialization(models.Model):
     """Специализации/должности"""
     name = models.CharField(max_length=150, verbose_name='Наименование')
-    description = models.CharField(max_length=150, verbose_name='Описание')
+    description = models.CharField(max_length=150, verbose_name='Описание', blank=True, null=True)
     is_active = models.BooleanField(default=True, verbose_name='Актив')
 
     def __str__(self):
@@ -47,11 +47,11 @@ class Staff(models.Model):
     """Сотрудники студии"""
     first_name = models.CharField(max_length=100, verbose_name='Имя')
     last_name = models.CharField(max_length=100, verbose_name='Фамилия')
-    experience = models.CharField(max_length=150, verbose_name='Опыт')
-    education = models.CharField(max_length=150, verbose_name='Образование')
-    specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE, verbose_name='Специализация')
-    status = models.ForeignKey(Status, on_delete=models.CASCADE, verbose_name='Статус')
-    ad_information = models.TextField(verbose_name='ad_information')
+    experience = models.CharField(max_length=150, verbose_name='Опыт', blank=True, null=True)
+    education = models.CharField(max_length=150, verbose_name='Образование', blank=True, null=True)
+    specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE, verbose_name='Специализация', blank=True, null=True)
+    status = models.ForeignKey(Status, on_delete=models.CASCADE, verbose_name='Статус', blank=True, null=True)
+    ad_information = models.TextField(verbose_name='ad_information', blank=True, null=True)
     is_active = models.BooleanField(default=True, verbose_name='Актив')
 
     def __str__(self):
@@ -83,7 +83,7 @@ class Vacancy(models.Model):
 class AgeGroups(models.Model):
     """Возрастные группы"""
     name = models.CharField(max_length=50, verbose_name='Наименование')
-    description = models.TextField(verbose_name='Описание ')
+    description = models.TextField(verbose_name='Описание', blank=True, null=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -96,7 +96,7 @@ class AgeGroups(models.Model):
 class LessonsType(models.Model):
     """Тип занятий"""
     name = models.CharField(max_length=150, verbose_name='Наименование')
-    description = models.CharField(max_length=150, verbose_name='Описание')
+    description = models.CharField(max_length=150, verbose_name='Описание', blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -134,13 +134,13 @@ class Lessons(models.Model):
 
 class Media(models.Model):
     """Фото и видеоматериалы, их краткое описание"""
-    lesson = models.ForeignKey(Lessons, on_delete=models.CASCADE, verbose_name='Занятие')
-    staff = models.ManyToManyField(Staff, verbose_name='Сотрудник')
+    lesson = models.ForeignKey(Lessons, on_delete=models.CASCADE, verbose_name='Занятие', blank=True, null=True)
+    staff = models.ManyToManyField(Staff, verbose_name='Сотрудник', blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     photo_link = models.ImageField(upload_to='post_files', blank=False, null=False, verbose_name='Ссылка на фото')
     video_file = models.FileField(upload_to='post_files', blank=True, null=True, verbose_name='Ссылка на видео')
     short_description = models.CharField(max_length=127, verbose_name='Краткое описание', blank=True, null=True)
-    is_active = models.BooleanField(verbose_name='Выводится в галерею')
+    is_active = models.BooleanField(default=False, verbose_name='Выводится в галерею')
 
     class Meta:
         verbose_name = 'Медиа'
@@ -176,7 +176,6 @@ class ContactDetails(models.Model):
     email = models.EmailField(max_length=254, blank=True, verbose_name='Электронная почта')
     location = models.CharField(max_length=150, verbose_name='Расположение на карте', blank=True, null=True)
 
-
     def __str__(self):
         return f'{self.city}, {self.street}, {self.building}'
 
@@ -188,8 +187,8 @@ class ContactDetails(models.Model):
 
 class SocialNetworks(models.Model):
     """Ссылки на социальные сети"""
-    name = models.CharField(max_length=100, blank=True, verbose_name='Название')
-    link = models.CharField(max_length=254, blank=True, verbose_name='Ссылка')
+    name = models.CharField(max_length=100, verbose_name='Название')
+    link = models.CharField(max_length=254, verbose_name='Ссылка')
     # link_1 = models.SlugField(max_length=254, blank=True, verbose_name='Ссылка')
 
     def __str__(self):
@@ -203,15 +202,15 @@ class SocialNetworks(models.Model):
 
 class News(models.Model):
     """ Новости портала """
-    created = models.DateTimeField(auto_now=True, verbose_name='Дата создания')
-    modified = models.DateTimeField(auto_now_add=True, verbose_name='Дата изменения')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    modified = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
     title = models.CharField(max_length=150, verbose_name='Заголовок')
-    digest = models.CharField(max_length=200, verbose_name='Краткое содержание')
+    digest = models.CharField(max_length=200, verbose_name='Краткое содержание', blank=True, null=True)
     content = models.TextField(verbose_name='Контент')
-    media_url = models.URLField(default='', verbose_name='Медиассылка')  # вот тут надо подумать нужно ли
+    media_url = models.URLField(default='', verbose_name='Медиассылка', blank=True, null=True)  # вот тут надо подумать нужно ли
     media = models.ForeignKey(Media, on_delete=models.CASCADE, verbose_name='Медиа')
     topic = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='Тематика')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор', blank=True, null=True)
 
     class Meta:
         ordering = ['-modified']  # сортировка
