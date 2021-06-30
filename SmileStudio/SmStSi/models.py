@@ -214,11 +214,11 @@ class NewsFlow(models.Model):
     digest = models.CharField(max_length=200, verbose_name='Краткое содержание', blank=True, null=True)
     content = models.TextField(verbose_name='Контент')
     media_url = models.URLField(default='', verbose_name='Медиассылка', blank=True, null=True)  # вот тут надо подумать нужно ли
-    media = models.ForeignKey(Media, on_delete=models.CASCADE, verbose_name='Медиа')
-    topic = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='Тематика')
+    media = models.ForeignKey(Media, on_delete=models.CASCADE, verbose_name='Медиа', null=True, blank=True)
+    topic = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='Тематика', null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор', blank=True, null=True)
 
     class Meta:
-        ordering = ['-modified']  # сортировка
+        ordering = ['-modified', 'title']  # сортировка
         verbose_name = 'Публикация'
         verbose_name_plural = 'Публикации'
