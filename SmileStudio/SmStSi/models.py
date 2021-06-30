@@ -139,6 +139,8 @@ class Media(models.Model):
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     photo_link = models.ImageField(upload_to='post_files', blank=False, null=False, verbose_name='Ссылка на фото')
     video_file = models.FileField(upload_to='post_files', blank=True, null=True, verbose_name='Ссылка на видео')
+    short_description = models.CharField(max_length=127, verbose_name='Краткое описание', blank=True, null=True)
+    is_active = models.BooleanField(verbose_name='Выводится в галерею')
 
     class Meta:
         verbose_name = 'Медиа'
