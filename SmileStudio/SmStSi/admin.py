@@ -34,6 +34,12 @@ class StaffAdmin(admin.ModelAdmin):
     search_fields = ('last_name', 'first_name', 'specialization__name')
 
 
+class CostsAdmin(admin.ModelAdmin):
+    list_display = ('lesson_type', 'staff', 'cost')
+    list_display_links = ('lesson_type',)
+    search_fields = ('lesson_type__name', 'staff__last_name')
+
+
 admin.site.register(StudioDescription)
 admin.site.register(Specialization, SpecializationAdmin)
 admin.site.register(Status)
@@ -41,7 +47,7 @@ admin.site.register(Staff, StaffAdmin)
 admin.site.register(Vacancy, VacancyAdmin)
 admin.site.register(AgeGroups)
 admin.site.register(LessonsType)
-admin.site.register(Costs)
+admin.site.register(Costs, CostsAdmin)
 admin.site.register(Lessons)
 admin.site.register(Media)
 admin.site.register(Reviews, ReviewsAdmin)

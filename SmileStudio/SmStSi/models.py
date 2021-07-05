@@ -16,6 +16,7 @@ class Specialization(models.Model):
         verbose_name = 'Специализация'
         verbose_name_plural = 'Специализации'
 
+
 ###
 class Status(models.Model):
     """Характер договора"""
@@ -35,18 +36,20 @@ class Staff(models.Model):
     last_name = models.CharField(max_length=100, verbose_name='Фамилия')
     experience = models.CharField(max_length=150, verbose_name='Опыт', blank=True, null=True)
     education = models.CharField(max_length=150, verbose_name='Образование', blank=True, null=True)
-    specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE, verbose_name='Специализация', blank=True, null=True)
+    specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE, verbose_name='Специализация',
+                                       blank=True, null=True)
     status = models.ForeignKey(Status, on_delete=models.CASCADE, verbose_name='Статус', blank=True, null=True)
     ad_information = models.TextField(verbose_name='ad_information', blank=True, null=True)
     is_active = models.BooleanField(default=True, verbose_name='Актив')
 
     def __str__(self):
-        return f'{self.first_name}, {self.last_name}, {self.experience}, {self.education}, {self.ad_information}'
+        return f'{self.last_name} {self.first_name}'
 
     class Meta:
         verbose_name = 'Сотрудник'
         verbose_name_plural = 'Сотрудники'
         ordering = ['last_name', 'first_name']
+
 
 ###
 class Vacancy(models.Model):
@@ -64,6 +67,7 @@ class Vacancy(models.Model):
         verbose_name = 'Вакансия'
         verbose_name_plural = 'Вакансии'
         ordering = ['date_add']
+
 
 ###
 class AgeGroups(models.Model):
@@ -99,14 +103,18 @@ class Costs(models.Model):
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE, verbose_name='Сотрудник')
     cost = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
 
+    def __str__(self):
+        return f'{self.lesson_type}, {self.cost}, {self.staff}'
+
     class Meta:
+        ordering = ['lesson_type', 'staff']
         verbose_name = 'Стоимость'
         verbose_name_plural = 'Стоимости'
 
 
 class Lessons(models.Model):
     """Занятия"""
-    lesson_type = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='')
+    lesson_type = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='Тип урока')
     cost = models.ForeignKey(Costs, on_delete=models.CASCADE, verbose_name='Цена')
     duration = models.CharField(max_length=50, verbose_name='Длительность')
     days = models.CharField(max_length=100, verbose_name='Дни')
@@ -147,6 +155,7 @@ class StudioDescription(models.Model):
     class Meta:
         verbose_name = 'О Нас'
         verbose_name_plural = 'О Нас'
+
 
 ###
 class Reviews(models.Model):
@@ -195,6 +204,7 @@ class SocialNetworks(models.Model):
     """Ссылки на социальные сети"""
     name = models.CharField(max_length=100, verbose_name='Название')
     link = models.CharField(max_length=254, verbose_name='Ссылка')
+
     # link_1 = models.SlugField(max_length=254, blank=True, verbose_name='Ссылка')
 
     def __str__(self):
@@ -213,10 +223,14 @@ class NewsFlow(models.Model):
     title = models.CharField(max_length=150, verbose_name='Заголовок')
     digest = models.CharField(max_length=200, verbose_name='Краткое содержание', blank=True, null=True)
     content = models.TextField(verbose_name='Контент')
-    media_url = models.URLField(default='', verbose_name='Медиассылка', blank=True, null=True)  # вот тут надо подумать нужно ли
+    media_url = models.URLField(default='', verbose_name='Медиассылка', blank=True,
+                                null=True)  # вот тут надо подумать нужно ли
     media = models.ForeignKey(Media, on_delete=models.CASCADE, verbose_name='Медиа', null=True, blank=True)
     topic = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='Тематика', null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор', blank=True, null=True)
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         ordering = ['-modified', 'title']  # сортировка
