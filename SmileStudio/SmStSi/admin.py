@@ -54,3 +54,4 @@ admin.site.register(Reviews, ReviewsAdmin)
 admin.site.register(ContactDetails)
 admin.site.register(SocialNetworks)
 admin.site.register(NewsFlow, NewsFlowAdmin)
+
