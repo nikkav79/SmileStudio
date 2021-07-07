@@ -235,3 +235,4 @@ class NewsFlow(models.Model):
         ordering = ['-modified', 'title']  # сортировка
         verbose_name = 'Публикация'
         verbose_name_plural = 'Публикации'
+
