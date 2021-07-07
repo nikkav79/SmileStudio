@@ -16,6 +16,10 @@ class Specialization(models.Model):
         verbose_name = 'Специализация'
         verbose_name_plural = 'Специализации'
 
+class Position(models.Model):
+    name = models.CharField(max_length=150, verbose_name='Наименование должности')
+    description = models.CharField(max_length=150, verbose_name='Описание должности', blank=True, null=True)
+    is_active = models.BooleanField(default=True, verbose_name='Актив')
 
 ###
 class ContractType(models.Model):
@@ -164,9 +168,6 @@ class Reviews(models.Model):
     staff = models.ManyToManyField(Staff, verbose_name='Сотрудник')
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     message = models.TextField(verbose_name='Текст отзыва')
-    star_choice_1 = models.CharField(max_length=5, verbose_name='Рейтинг1')
-    star_choice_2 = models.CharField(max_length=5, verbose_name='Рейтинг2')
-    star_choice_3 = models.CharField(max_length=5, verbose_name='Рейтинг3')
 
     class Meta:
         verbose_name = 'Отзыв'
@@ -236,3 +237,17 @@ class NewsFlow(models.Model):
         verbose_name = 'Публикация'
         verbose_name_plural = 'Публикации'
 
+class Rent(models.Model):
+    title = models.CharField(max_length=150, verbose_name='Заголовок')
+    about = models.TextField(verbose_name='Описание аренды')
+    media = models.ForeignKey(Media, on_delete=models.CASCADE, verbose_name='Медиа')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Аренда'
+        verbose_name_plural = 'Аренды'
+
+class Timetable(models.Model):
+    pass #Скорее всего не понадобится отдельная модель, все можно из Lessons вытащить

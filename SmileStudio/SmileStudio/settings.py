@@ -79,12 +79,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': 'C:/Program Files/MySQL/MySQL Server 8.0/etc/my.cnf',
+            'read_default_file': 'C:/Program Files/MySQL/MySQL Server 8.0/etc/my.cnf', 'charset': 'utf8mb4',
         },
-        'NAME': 'y91616lw_smstsi',
-        'USER': 'y91616lw_smstsi',
-        'PASSWORD': 'Secur1ty#',
-        'HOST': 'y91616lw.beget.tech',
+        'TEST_CHARSET': 'utf8mb4',
+        'NAME': 'SmileStudio',
+        'USER': 'django',
+        'PASSWORD': '12345',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
