@@ -13,7 +13,7 @@ body {
 
 .button, input[type=submit], input[type=button], .submit-row input, a.button {
     background: #033E3E;
-    width: 100%;
+    width: 91%;
     color: #EAC117;
 }
 
@@ -42,10 +42,19 @@ div.breadcrumbs {
 
 }
 
-.login .submit-row {
-    text-align: left !important;
-}
-
 input, textarea, select, .form-row p, form .button {
     font-size: 16px;
+}
+
+.submit-row input.default {
+    margin: 0 0 10px 8px !important;
+}
+
+.submit-row input {
+    margin: 0 0 10px 5px !important;
+}
+
+
+.login {
+    background: #045F5F !important;
 }
