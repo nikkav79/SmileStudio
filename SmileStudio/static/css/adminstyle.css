@@ -1,5 +1,5 @@
 #user-tools {
-    font-size: 14px;
+    font-size: 16px;
     color: #EAC117;
 }
 
@@ -13,7 +13,7 @@ body {
 
 .button, input[type=submit], input[type=button], .submit-row input, a.button {
     background: #033E3E;
-    width: 91%;
+    width: 80%;
     color: #EAC117;
 }
 
@@ -57,4 +57,12 @@ input, textarea, select, .form-row p, form .button {
 
 .login {
     background: #045F5F !important;
+}
+
+.mini {
+    font-size: 13px;
+}
+
+li, dt, dd {
+    font-size: 15px;
 }

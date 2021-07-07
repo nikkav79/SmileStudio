@@ -3,7 +3,7 @@ from .models import *
 
 
 class VacancyAdmin(admin.ModelAdmin):
-    list_display = ('specialization', 'status', 'date_add', 'is_active')
+    list_display = ('specialization', 'contract', 'date_add', 'is_active')
     list_display_links = ('specialization',)
     search_fields = ('specialization', 'description')
 
@@ -29,7 +29,7 @@ class SpecializationAdmin(admin.ModelAdmin):
 
 
 class StaffAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name', 'specialization', 'status')
+    list_display = ('last_name', 'first_name', 'specialization', 'contract')
     list_display_links = ('last_name',)
     search_fields = ('last_name', 'first_name', 'specialization__name')
 
@@ -42,7 +42,7 @@ class CostsAdmin(admin.ModelAdmin):
 
 admin.site.register(StudioDescription)
 admin.site.register(Specialization, SpecializationAdmin)
-admin.site.register(Status)
+admin.site.register(ContractType)
 admin.site.register(Staff, StaffAdmin)
 admin.site.register(Vacancy, VacancyAdmin)
 admin.site.register(AgeGroups)

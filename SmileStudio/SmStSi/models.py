@@ -18,7 +18,7 @@ class Specialization(models.Model):
 
 
 ###
-class Status(models.Model):
+class ContractType(models.Model):
     """Характер договора"""
     name = models.CharField(max_length=100, verbose_name='Тип договора')
 
@@ -38,7 +38,7 @@ class Staff(models.Model):
     education = models.CharField(max_length=150, verbose_name='Образование', blank=True, null=True)
     specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE, verbose_name='Специализация',
                                        blank=True, null=True)
-    status = models.ForeignKey(Status, on_delete=models.CASCADE, verbose_name='Статус', blank=True, null=True)
+    contract = models.ForeignKey(ContractType, on_delete=models.CASCADE, verbose_name='Статус', blank=True, null=True)
     ad_information = models.TextField(verbose_name='ad_information', blank=True, null=True)
     is_active = models.BooleanField(default=True, verbose_name='Актив')
 
@@ -55,7 +55,7 @@ class Staff(models.Model):
 class Vacancy(models.Model):
     """Вакансии студии"""
     specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE, verbose_name='Специализация')
-    status = models.ForeignKey(Status, on_delete=models.CASCADE, verbose_name='Статус')
+    contract = models.ForeignKey(ContractType, on_delete=models.CASCADE, verbose_name='Статус')
     description = models.TextField(verbose_name='Описание')
     responsibilities = models.TextField(verbose_name='Обязанности')
     requirements = models.TextField(verbose_name='Требования')
@@ -130,7 +130,6 @@ class Lessons(models.Model):
 class Media(models.Model):
     """Фото и видеоматериалы, их краткое описание"""
     lesson = models.ForeignKey(Lessons, on_delete=models.CASCADE, verbose_name='Занятие', blank=True, null=True)
-    staff = models.ManyToManyField(Staff, verbose_name='Сотрудник')
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     photo_link = models.ImageField(upload_to='post_files', blank=False, null=False, verbose_name='Ссылка на фото')
     video_file = models.FileField(upload_to='post_files', blank=True, null=True, verbose_name='Ссылка на видео')
