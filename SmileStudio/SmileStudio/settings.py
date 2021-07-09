@@ -83,8 +83,8 @@ DATABASES = {
         },
         'TEST_CHARSET': 'utf8mb4',
         'NAME': 'SmileStudio',
-        'USER': 'django',
-        'PASSWORD': '12345',
+        'USER': 'root',
+        'PASSWORD': '1234',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
