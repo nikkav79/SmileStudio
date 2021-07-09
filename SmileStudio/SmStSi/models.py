@@ -16,8 +16,13 @@ class Specialization(models.Model):
         verbose_name = 'Специализация'
         verbose_name_plural = 'Специализации'
 
+class Position(models.Model):
+    name = models.CharField(max_length=150, verbose_name='Наименование должности')
+    description = models.CharField(max_length=150, verbose_name='Описание должности', blank=True, null=True)
+    is_active = models.BooleanField(default=True, verbose_name='Актив')
+
 ###
-class Status(models.Model):
+class ContractType(models.Model):
     """Характер договора"""
     name = models.CharField(max_length=100, verbose_name='Тип договора')
 
@@ -35,13 +40,14 @@ class Staff(models.Model):
     last_name = models.CharField(max_length=100, verbose_name='Фамилия')
     experience = models.CharField(max_length=150, verbose_name='Опыт', blank=True, null=True)
     education = models.CharField(max_length=150, verbose_name='Образование', blank=True, null=True)
-    specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE, verbose_name='Специализация', blank=True, null=True)
-    status = models.ForeignKey(Status, on_delete=models.CASCADE, verbose_name='Статус', blank=True, null=True)
+    specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE, verbose_name='Специализация',
+                                       blank=True, null=True)
+    contract = models.ForeignKey(ContractType, on_delete=models.CASCADE, verbose_name='Статус', blank=True, null=True)
     ad_information = models.TextField(verbose_name='ad_information', blank=True, null=True)
     is_active = models.BooleanField(default=True, verbose_name='Актив')
 
     def __str__(self):
-        return f'{self.first_name}, {self.last_name}, {self.experience}, {self.education}, {self.ad_information}'
+        return f'{self.last_name} {self.first_name}'
 
     class Meta:
         verbose_name = 'Сотрудник'
@@ -52,7 +58,7 @@ class Staff(models.Model):
 class Vacancy(models.Model):
     """Вакансии студии"""
     specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE, verbose_name='Специализация')
-    status = models.ForeignKey(Status, on_delete=models.CASCADE, verbose_name='Статус')
+    contract = models.ForeignKey(ContractType, on_delete=models.CASCADE, verbose_name='Статус')
     description = models.TextField(verbose_name='Описание')
     responsibilities = models.TextField(verbose_name='Обязанности')
     requirements = models.TextField(verbose_name='Требования')
@@ -100,7 +106,11 @@ class Costs(models.Model):
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE, verbose_name='Сотрудник')
     cost = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
 
+    def __str__(self):
+        return f'{self.lesson_type}, {self.cost}, {self.staff}'
+
     class Meta:
+        ordering = ['lesson_type', 'staff']
         verbose_name = 'Стоимость'
         verbose_name_plural = 'Стоимости'
 
@@ -161,7 +171,6 @@ class Lessons(models.Model):
 class Media(models.Model):
     """Фото и видеоматериалы, их краткое описание"""
     lesson = models.ForeignKey(Lessons, on_delete=models.CASCADE, verbose_name='Занятие', blank=True, null=True)
-    staff = models.ManyToManyField(Staff, verbose_name='Сотрудник')
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     photo_link = models.ImageField(upload_to='post_files', blank=False, null=False, verbose_name='Ссылка на фото')
     video_file = models.FileField(upload_to='post_files', blank=True, null=True, verbose_name='Ссылка на видео')
@@ -195,9 +204,6 @@ class Reviews(models.Model):
     staff = models.ManyToManyField(Staff, verbose_name='Сотрудник')
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     message = models.TextField(verbose_name='Текст отзыва')
-    star_choice_1 = models.CharField(max_length=5, verbose_name='Рейтинг1')
-    star_choice_2 = models.CharField(max_length=5, verbose_name='Рейтинг2')
-    star_choice_3 = models.CharField(max_length=5, verbose_name='Рейтинг3')
 
     class Meta:
         verbose_name = 'Отзыв'
@@ -252,12 +258,31 @@ class NewsFlow(models.Model):
     title = models.CharField(max_length=150, verbose_name='Заголовок')
     digest = models.CharField(max_length=200, verbose_name='Краткое содержание', blank=True, null=True)
     content = models.TextField(verbose_name='Контент')
-    media_url = models.URLField(default='', verbose_name='Медиассылка', blank=True, null=True)  # вот тут надо подумать нужно ли
+    media_url = models.URLField(default='', verbose_name='Медиассылка', blank=True,
+                                null=True)  # вот тут надо подумать нужно ли
     media = models.ForeignKey(Media, on_delete=models.CASCADE, verbose_name='Медиа', null=True, blank=True)
     topic = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='Тематика', null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор', blank=True, null=True)
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         ordering = ['-modified', 'title']  # сортировка
         verbose_name = 'Публикация'
         verbose_name_plural = 'Публикации'
+
+class Rent(models.Model):
+    title = models.CharField(max_length=150, verbose_name='Заголовок')
+    about = models.TextField(verbose_name='Описание аренды')
+    media = models.ForeignKey(Media, on_delete=models.CASCADE, verbose_name='Медиа')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Аренда'
+        verbose_name_plural = 'Аренды'
+
+class Timetable(models.Model):
+    pass #Скорее всего не понадобится отдельная модель, все можно из Lessons вытащить
