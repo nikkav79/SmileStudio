@@ -79,9 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': 'C:/Program Files/MySQL/MySQL Server 8.0/etc/my.cnf', 'charset': 'utf8mb4',
+            'read_default_file': 'C:/Program Files/MySQL/MySQL Server 8.0/etc/my.cnf',
         },
-        'TEST_CHARSET': 'utf8mb4',
         'NAME': 'SmileStudio',
         'USER': 'root',
         'PASSWORD': '1234',

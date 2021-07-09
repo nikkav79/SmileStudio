@@ -16,6 +16,7 @@ class Specialization(models.Model):
         verbose_name = 'Специализация'
         verbose_name_plural = 'Специализации'
 
+
 class Position(models.Model):
     name = models.CharField(max_length=150, verbose_name='Наименование должности')
     description = models.CharField(max_length=150, verbose_name='Описание должности', blank=True, null=True)
@@ -135,12 +136,12 @@ class WeekDaysBool(models.Model):
     sunday = models.BooleanField(default=False, verbose_name='Воскресенье')
 
     class Meta:
-        verbose_name = 'Дни недели'
-        verbose_name_plural = 'Дни недели'
+        verbose_name = 'Дни недели Bool'
+        verbose_name_plural = 'Дни недели Bool'
 
 
 class WeekDaysEnum(models.Model):
-    """Дни недели bool"""
+    """Дни недели enum"""
     DAYS_OF_WEEK = (
         (0, 'Monday'),
         (1, 'Tuesday'),
@@ -152,11 +153,15 @@ class WeekDaysEnum(models.Model):
     )
     days = models.CharField(max_length=1, choices=DAYS_OF_WEEK, verbose_name='День недели')
 
+    class Meta:
+        verbose_name = 'Дни недели Enum'
+        verbose_name_plural = 'Дни недели Enum'
+
 
 class Lessons(models.Model):
     """Занятия"""
     is_active = models.BooleanField(default=True, verbose_name='Актив')
-    lesson_age = models.ManyToManyField(AgeGroups, verbose_name='Возрастная группа')
+    #lesson_age = models.ManyToManyField(AgeGroups, verbose_name='Возрастная группа')
     cost = models.ForeignKey(Costs, on_delete=models.CASCADE, verbose_name='Цена')
     days_bool = models.ForeignKey(WeekDaysBool, on_delete=models.CASCADE, verbose_name='Дни занятий bool')
     days_enum = models.ManyToManyField(WeekDaysEnum, verbose_name='Дни занятий enum')
@@ -272,6 +277,7 @@ class NewsFlow(models.Model):
         verbose_name = 'Публикация'
         verbose_name_plural = 'Публикации'
 
+
 class Rent(models.Model):
     title = models.CharField(max_length=150, verbose_name='Заголовок')
     about = models.TextField(verbose_name='Описание аренды')
@@ -283,6 +289,7 @@ class Rent(models.Model):
     class Meta:
         verbose_name = 'Аренда'
         verbose_name_plural = 'Аренды'
+
 
 class Timetable(models.Model):
     pass #Скорее всего не понадобится отдельная модель, все можно из Lessons вытащить
