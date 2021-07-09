@@ -82,8 +82,9 @@ class AgeGroups(models.Model):
 class LessonsType(models.Model):
     """Тип занятий"""
     name = models.CharField(max_length=150, verbose_name='Наименование')
-    description = models.CharField(max_length=150, verbose_name='Описание', blank=True, null=True)
+    description = models.TextField(verbose_name='Описание', blank=True, null=True)
     improves_skills = models.CharField(max_length=255, verbose_name='Развивающиеся навыки', blank=True, null=True)
+    group_lesson = models.BooleanField(default=True, verbose_name='Групповое занятие')
 
     def __str__(self):
         return self.name
@@ -104,15 +105,53 @@ class Costs(models.Model):
         verbose_name_plural = 'Стоимости'
 
 
+class LessonStartTime(models.Model):
+    """Время старта занятий"""
+    time = models.TimeField(verbose_name='Время')
+
+    class Meta:
+        verbose_name = 'Время начала урока'
+        verbose_name_plural = 'Время начала уроков'
+
+
+class WeekDaysBool(models.Model):
+    """Дни недели bool"""
+    monday = models.BooleanField(default=False, verbose_name='Понедельник')
+    tuesday = models.BooleanField(default=False, verbose_name='Вторник')
+    wednesday = models.BooleanField(default=False, verbose_name='Среда')
+    thursday = models.BooleanField(default=False, verbose_name='Четверг')
+    friday = models.BooleanField(default=False, verbose_name='Пятница')
+    saturday = models.BooleanField(default=False, verbose_name='Суббота')
+    sunday = models.BooleanField(default=False, verbose_name='Воскресенье')
+
+    class Meta:
+        verbose_name = 'Дни недели'
+        verbose_name_plural = 'Дни недели'
+
+
+class WeekDaysEnum(models.Model):
+    """Дни недели bool"""
+    DAYS_OF_WEEK = (
+        (0, 'Monday'),
+        (1, 'Tuesday'),
+        (2, 'Wednesday'),
+        (3, 'Thursday'),
+        (4, 'Friday'),
+        (5, 'Saturday'),
+        (6, 'Sunday'),
+    )
+    days = models.CharField(max_length=1, choices=DAYS_OF_WEEK, verbose_name='День недели')
+
+
 class Lessons(models.Model):
     """Занятия"""
-    lesson_type = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='')
-    cost = models.ForeignKey(Costs, on_delete=models.CASCADE, verbose_name='Цена')
-    duration = models.CharField(max_length=50, verbose_name='Длительность')
-    days = models.CharField(max_length=100, verbose_name='Дни')
-    hours = models.CharField(max_length=100, verbose_name='Часы')
-    lesson_age = models.ManyToManyField(AgeGroups, verbose_name='Возрастная группа')
     is_active = models.BooleanField(default=True, verbose_name='Актив')
+    lesson_age = models.ManyToManyField(AgeGroups, verbose_name='Возрастная группа')
+    cost = models.ForeignKey(Costs, on_delete=models.CASCADE, verbose_name='Цена')
+    days_bool = models.ForeignKey(WeekDaysBool, on_delete=models.CASCADE, verbose_name='Дни занятий bool')
+    days_enum = models.ManyToManyField(WeekDaysEnum, verbose_name='Дни занятий enum')
+    start_time = models.ManyToManyField(LessonStartTime, verbose_name='Время начала')
+    duration = models.IntegerField(verbose_name='Длительность в минутах')
 
     class Meta:
         verbose_name = 'Занятие'
