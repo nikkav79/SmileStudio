@@ -125,7 +125,7 @@ class LessonStartTime(models.Model):
         verbose_name_plural = 'Время начала уроков'
 
 
-class WeekDaysBool(models.Model):
+class WeekDays(models.Model):
     """Дни недели bool"""
     monday = models.BooleanField(default=False, verbose_name='Понедельник')
     tuesday = models.BooleanField(default=False, verbose_name='Вторник')
@@ -135,38 +135,26 @@ class WeekDaysBool(models.Model):
     saturday = models.BooleanField(default=False, verbose_name='Суббота')
     sunday = models.BooleanField(default=False, verbose_name='Воскресенье')
 
-    class Meta:
-        verbose_name = 'Дни недели Bool'
-        verbose_name_plural = 'Дни недели Bool'
-
-
-class WeekDaysEnum(models.Model):
-    """Дни недели enum"""
-    DAYS_OF_WEEK = (
-        (0, 'Monday'),
-        (1, 'Tuesday'),
-        (2, 'Wednesday'),
-        (3, 'Thursday'),
-        (4, 'Friday'),
-        (5, 'Saturday'),
-        (6, 'Sunday'),
-    )
-    days = models.CharField(max_length=1, choices=DAYS_OF_WEEK, verbose_name='День недели')
+    def __str__(self):
+        days = [self.monday, self.tuesday, self.wednesday, self.thursday, self.friday, self.saturday, self.sunday]
+        return f'{[1 if day else 0 for day in days]}'
 
     class Meta:
-        verbose_name = 'Дни недели Enum'
-        verbose_name_plural = 'Дни недели Enum'
+        verbose_name = 'Дни недели'
+        verbose_name_plural = 'Дни недели'
 
 
 class Lessons(models.Model):
     """Занятия"""
     is_active = models.BooleanField(default=True, verbose_name='Актив')
-    #lesson_age = models.ManyToManyField(AgeGroups, verbose_name='Возрастная группа')
+    lesson_age = models.ManyToManyField(AgeGroups, verbose_name='Возрастная группа')
     cost = models.ForeignKey(Costs, on_delete=models.CASCADE, verbose_name='Цена')
-    days_bool = models.ForeignKey(WeekDaysBool, on_delete=models.CASCADE, verbose_name='Дни занятий bool')
-    days_enum = models.ManyToManyField(WeekDaysEnum, verbose_name='Дни занятий enum')
+    days = models.ForeignKey(WeekDays, on_delete=models.CASCADE, verbose_name='Дни занятий bool')
     start_time = models.ManyToManyField(LessonStartTime, verbose_name='Время начала')
     duration = models.IntegerField(verbose_name='Длительность в минутах')
+
+    def __str__(self):
+        return f'{self.days}, {self.duration}'
 
     class Meta:
         verbose_name = 'Занятие'

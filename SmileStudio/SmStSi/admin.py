@@ -57,7 +57,6 @@ admin.site.register(NewsFlow, NewsFlowAdmin)
 # 09.07
 admin.site.register(Position)
 admin.site.register(LessonStartTime)
-admin.site.register(WeekDaysBool)
-admin.site.register(WeekDaysEnum)
+admin.site.register(WeekDays)
 admin.site.register(Rent)
 admin.site.register(Timetable)
