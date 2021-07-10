@@ -15,9 +15,9 @@ class NewsFlowAdmin(admin.ModelAdmin):
 
 
 class ReviewsAdmin(admin.ModelAdmin):
-    list_display = ('date', 'lesson', 'user', 'star_choice_1')
+    list_display = ('date', 'lesson', 'user')
     list_display_links = ('date', 'lesson')
-    search_fields = ('date', 'lesson', 'staff', 'star_choice_1')
+    search_fields = ('date', 'lesson', 'staff')
     # что касается star_choice то для админа имеет
     # смысл смотреть по средней оценке из 3х, её надо придумать в модели Reviews
 
@@ -54,4 +54,9 @@ admin.site.register(Reviews, ReviewsAdmin)
 admin.site.register(ContactDetails)
 admin.site.register(SocialNetworks)
 admin.site.register(NewsFlow, NewsFlowAdmin)
-
+# 09.07
+admin.site.register(Position)
+admin.site.register(LessonStartTime)
+admin.site.register(WeekDays)
+admin.site.register(Rent)
+admin.site.register(Timetable)

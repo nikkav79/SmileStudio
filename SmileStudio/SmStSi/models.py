@@ -16,6 +16,7 @@ class Specialization(models.Model):
         verbose_name = 'Специализация'
         verbose_name_plural = 'Специализации'
 
+
 class Position(models.Model):
     name = models.CharField(max_length=150, verbose_name='Наименование должности')
     description = models.CharField(max_length=150, verbose_name='Описание должности', blank=True, null=True)
@@ -54,7 +55,6 @@ class Staff(models.Model):
         verbose_name_plural = 'Сотрудники'
         ordering = ['last_name', 'first_name']
 
-
 ###
 class Vacancy(models.Model):
     """Вакансии студии"""
@@ -71,7 +71,6 @@ class Vacancy(models.Model):
         verbose_name = 'Вакансия'
         verbose_name_plural = 'Вакансии'
         ordering = ['date_add']
-
 
 ###
 class AgeGroups(models.Model):
@@ -90,8 +89,9 @@ class AgeGroups(models.Model):
 class LessonsType(models.Model):
     """Тип занятий"""
     name = models.CharField(max_length=150, verbose_name='Наименование')
-    description = models.CharField(max_length=150, verbose_name='Описание', blank=True, null=True)
+    description = models.TextField(verbose_name='Описание', blank=True, null=True)
     improves_skills = models.CharField(max_length=255, verbose_name='Развивающиеся навыки', blank=True, null=True)
+    group_lesson = models.BooleanField(default=True, verbose_name='Групповое занятие')
 
     def __str__(self):
         return self.name
@@ -116,15 +116,45 @@ class Costs(models.Model):
         verbose_name_plural = 'Стоимости'
 
 
+class LessonStartTime(models.Model):
+    """Время старта занятий"""
+    time = models.TimeField(verbose_name='Время')
+
+    class Meta:
+        verbose_name = 'Время начала урока'
+        verbose_name_plural = 'Время начала уроков'
+
+
+class WeekDays(models.Model):
+    """Дни недели bool"""
+    monday = models.BooleanField(default=False, verbose_name='Понедельник')
+    tuesday = models.BooleanField(default=False, verbose_name='Вторник')
+    wednesday = models.BooleanField(default=False, verbose_name='Среда')
+    thursday = models.BooleanField(default=False, verbose_name='Четверг')
+    friday = models.BooleanField(default=False, verbose_name='Пятница')
+    saturday = models.BooleanField(default=False, verbose_name='Суббота')
+    sunday = models.BooleanField(default=False, verbose_name='Воскресенье')
+
+    def __str__(self):
+        days = [self.monday, self.tuesday, self.wednesday, self.thursday, self.friday, self.saturday, self.sunday]
+        return f'{[1 if day else 0 for day in days]}'
+
+    class Meta:
+        verbose_name = 'Дни недели'
+        verbose_name_plural = 'Дни недели'
+
+
 class Lessons(models.Model):
     """Занятия"""
-    lesson_type = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='Тип урока')
-    cost = models.ForeignKey(Costs, on_delete=models.CASCADE, verbose_name='Цена')
-    duration = models.CharField(max_length=50, verbose_name='Длительность')
-    days = models.CharField(max_length=100, verbose_name='Дни')
-    hours = models.CharField(max_length=100, verbose_name='Часы')
-    lesson_age = models.ManyToManyField(AgeGroups, verbose_name='Возрастная группа')
     is_active = models.BooleanField(default=True, verbose_name='Актив')
+    lesson_age = models.ManyToManyField(AgeGroups, verbose_name='Возрастная группа')
+    cost = models.ForeignKey(Costs, on_delete=models.CASCADE, verbose_name='Цена')
+    days = models.ForeignKey(WeekDays, on_delete=models.CASCADE, verbose_name='Дни занятий bool')
+    start_time = models.ManyToManyField(LessonStartTime, verbose_name='Время начала')
+    duration = models.IntegerField(verbose_name='Длительность в минутах')
+
+    def __str__(self):
+        return f'{self.days}, {self.duration}'
 
     class Meta:
         verbose_name = 'Занятие'
@@ -158,7 +188,6 @@ class StudioDescription(models.Model):
     class Meta:
         verbose_name = 'О Нас'
         verbose_name_plural = 'О Нас'
-
 
 ###
 class Reviews(models.Model):
@@ -204,7 +233,6 @@ class SocialNetworks(models.Model):
     """Ссылки на социальные сети"""
     name = models.CharField(max_length=100, verbose_name='Название')
     link = models.CharField(max_length=254, verbose_name='Ссылка')
-
     # link_1 = models.SlugField(max_length=254, blank=True, verbose_name='Ссылка')
 
     def __str__(self):
@@ -237,6 +265,7 @@ class NewsFlow(models.Model):
         verbose_name = 'Публикация'
         verbose_name_plural = 'Публикации'
 
+
 class Rent(models.Model):
     title = models.CharField(max_length=150, verbose_name='Заголовок')
     about = models.TextField(verbose_name='Описание аренды')
@@ -248,6 +277,7 @@ class Rent(models.Model):
     class Meta:
         verbose_name = 'Аренда'
         verbose_name_plural = 'Аренды'
+
 
 class Timetable(models.Model):
     pass #Скорее всего не понадобится отдельная модель, все можно из Lessons вытащить
