@@ -96,6 +96,7 @@ class LessonsType(models.Model):
     """Тип занятий"""
     name = models.CharField(max_length=150, verbose_name='Наименование')
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
+    photo = models.ForeignKey(Media, on_delete=models.PROTECT, verbose_name='Фото', blank=True, null=True)
     improves_skills = models.CharField(max_length=255, verbose_name='Развивающиеся навыки', blank=True, null=True)
     group_lesson = models.BooleanField(default=True, verbose_name='Групповое занятие')
 
