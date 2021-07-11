@@ -39,16 +39,26 @@ class CostsAdmin(admin.ModelAdmin):
     list_display_links = ('lesson_type',)
     search_fields = ('lesson_type__name', 'staff__last_name')
 
+class TimeTableInline(admin.TabularInline):
+    model = TimeTable
+
+
+class LessonsAdmin(admin.ModelAdmin):
+    inlines = [
+        TimeTableInline,
+    ]
+    exclude = ('days',)
+
 
 admin.site.register(StudioDescription)
 admin.site.register(Specialization, SpecializationAdmin)
 admin.site.register(ContractType)
-admin.site.register(Staff, StaffAdmin)
+admin.site.register(Team, StaffAdmin)
 admin.site.register(Vacancy, VacancyAdmin)
 admin.site.register(AgeGroups)
 admin.site.register(LessonsType)
 admin.site.register(Costs, CostsAdmin)
-admin.site.register(Lessons)
+admin.site.register(Lessons, LessonsAdmin)
 admin.site.register(Media)
 admin.site.register(Reviews, ReviewsAdmin)
 admin.site.register(ContactDetails)
@@ -56,7 +66,5 @@ admin.site.register(SocialNetworks)
 admin.site.register(NewsFlow, NewsFlowAdmin)
 # 09.07
 admin.site.register(Position)
-admin.site.register(LessonStartTime)
 admin.site.register(WeekDays)
 admin.site.register(Rent)
-admin.site.register(Timetable)
