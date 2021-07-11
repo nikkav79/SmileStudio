@@ -17,7 +17,7 @@ class NewsFlowAdmin(admin.ModelAdmin):
 class ReviewsAdmin(admin.ModelAdmin):
     list_display = ('date', 'lesson', 'user')
     list_display_links = ('date', 'lesson')
-    search_fields = ('date', 'lesson', 'staff')
+    search_fields = ('date', 'lesson', 'team_member')
     # что касается star_choice то для админа имеет
     # смысл смотреть по средней оценке из 3х, её надо придумать в модели Reviews
 
@@ -29,15 +29,26 @@ class SpecializationAdmin(admin.ModelAdmin):
 
 
 class StaffAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name', 'specialization', 'contract')
+    list_display = ('last_name', 'first_name', 'contract')
     list_display_links = ('last_name',)
     search_fields = ('last_name', 'first_name', 'specialization__name')
 
 
 class CostsAdmin(admin.ModelAdmin):
-    list_display = ('lesson_type', 'staff', 'cost')
+    list_display = ('lesson_type', 'team_member', 'cost')
     list_display_links = ('lesson_type',)
-    search_fields = ('lesson_type__name', 'staff__last_name')
+    search_fields = ('lesson_type__name', 'team_member__last_name')
+
+
+class TimeTableInline(admin.TabularInline):
+    model = TimeTable
+
+
+class LessonsAdmin(admin.ModelAdmin):
+    inlines = [
+        TimeTableInline,
+    ]
+    exclude = ('days',)
 
 class TimeTableInline(admin.TabularInline):
     model = TimeTable
