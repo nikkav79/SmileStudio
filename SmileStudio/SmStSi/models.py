@@ -46,7 +46,7 @@ class ContractType(models.Model):
 class Media(models.Model):
     """Фото и видеоматериалы, их краткое описание"""
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
-    media_link = models.FileField(upload_to='post_files', blank=False, null=False, verbose_name='Ссылка на медиа-файл')
+    media_link = models.ImageField(upload_to='post_files', blank=False, null=False, verbose_name='Ссылка на медиа-файл')
     short_description = models.CharField(max_length=127, verbose_name='Краткое описание', blank=True, null=True)
     is_active = models.BooleanField(default=False, verbose_name='Выводится в галерею')
 
@@ -96,7 +96,6 @@ class LessonsType(models.Model):
     """Тип занятий"""
     name = models.CharField(max_length=150, verbose_name='Наименование')
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
-    photo = models.ForeignKey(Media, on_delete=models.PROTECT, verbose_name='Фото', blank=True, null=True)
     improves_skills = models.CharField(max_length=255, verbose_name='Развивающиеся навыки', blank=True, null=True)
     group_lesson = models.BooleanField(default=True, verbose_name='Групповое занятие')
 
