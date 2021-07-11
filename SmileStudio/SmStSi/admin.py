@@ -50,16 +50,6 @@ class LessonsAdmin(admin.ModelAdmin):
     ]
     exclude = ('days',)
 
-class TimeTableInline(admin.TabularInline):
-    model = TimeTable
-
-
-class LessonsAdmin(admin.ModelAdmin):
-    inlines = [
-        TimeTableInline,
-    ]
-    exclude = ('days',)
-
 
 admin.site.register(StudioDescription)
 admin.site.register(Specialization, SpecializationAdmin)
