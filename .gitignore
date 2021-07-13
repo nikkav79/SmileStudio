@@ -1,4 +1,5 @@
 ### Django ###
+.idea/
 __pycache__/
 migrations/
 main.py
