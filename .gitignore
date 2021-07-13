@@ -2,6 +2,5 @@
 .idea/
 __pycache__/
 migrations/
-main.py
 venv/
-SmileStudio/SmileStudio/settings.py
+/settings.py
