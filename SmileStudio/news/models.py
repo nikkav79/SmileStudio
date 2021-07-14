@@ -1,7 +1,7 @@
 from django.db import models
-from phone_field import PhoneField
 from django.contrib.auth.models import User
 from media.models import Media
+from lessons.models import LessonsType
 
 
 class NewsFlow(models.Model):

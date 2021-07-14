@@ -33,11 +33,11 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'lessons.apps.LessonsConfig',
+    'mainpage.apps.MainpageConfig',
     'media.apps.MediaConfig',
     'news.apps.NewsConfig',
     'reviews.apps.ReviewsConfig',
     'team.apps.TeamConfig',
-    'SmStSi.apps.SmstsiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
