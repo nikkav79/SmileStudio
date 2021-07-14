@@ -21,5 +21,11 @@ from SmStSi.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('SmileStudio/', include('SmStSi.urls'))
+    path('SmileStudio/', include('SmStSi.urls')),
+    path('SmileStudio/', include('about.urls')),
+    path('SmileStudio/', include('lessons.urls')),
+    path('SmileStudio/', include('media.urls')),
+    path('SmileStudio/', include('news.urls')),
+    path('SmileStudio/', include('reviews.urls')),
+    path('SmileStudio/', include('team.urls'))
 ]

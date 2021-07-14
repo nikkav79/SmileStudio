@@ -31,6 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'about.apps.AboutConfig',
+    'lessons.apps.LessonsConfig',
+    'media.apps.MediaConfig',
+    'news.apps.NewsConfig',
+    'reviews.apps.ReviewsConfig',
+    'team.apps.TeamConfig',
     'SmStSi.apps.SmstsiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
