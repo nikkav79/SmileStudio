@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import *
+from about.models import *
+from lessons.models import *
+from media.models import *
+from news.models import *
+from reviews.models import *
+from team.models import *
 
 
 class VacancyAdmin(admin.ModelAdmin):
@@ -69,3 +74,4 @@ admin.site.register(NewsFlow, NewsFlowAdmin)
 admin.site.register(Position)
 admin.site.register(WeekDays)
 admin.site.register(Rent)
+
