@@ -1,6 +1,6 @@
 ### Django ###
 __pycache__/
-migrations/
+
 main.py
 venv/
-.idea
+ReadMe.py
