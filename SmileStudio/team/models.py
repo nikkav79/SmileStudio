@@ -68,7 +68,7 @@ class Team(models.Model):
 class Vacancy(models.Model):
     """Вакансии студии"""
     specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE, verbose_name='Специализация')
-    contract = models.ForeignKey(ContractType, on_delete=models.CASCADE, verbose_name='Статус')
+    contract = models.ForeignKey(ContractType, on_delete=models.CASCADE, verbose_name='Тип договора')
     description = models.TextField(verbose_name='Описание')
     responsibilities = models.TextField(verbose_name='Обязанности')
     requirements = models.TextField(verbose_name='Требования')
