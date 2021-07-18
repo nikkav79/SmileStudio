@@ -22,7 +22,6 @@ class LessonsType(models.Model):
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
     photo = models.ForeignKey(Media, on_delete=models.PROTECT, verbose_name='Фото', blank=True, null=True)
     improves_skills = models.CharField(max_length=255, verbose_name='Развивающиеся навыки', blank=True, null=True)
-    group_lesson = models.BooleanField(default=True, verbose_name='Групповое занятие')
 
     def __str__(self):
         return self.name
@@ -34,15 +33,13 @@ class LessonsType(models.Model):
 
 class Costs(models.Model):
     """Стоимость занятий"""
-    lesson_type = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='Тип занятия')
-    team_member = models.ForeignKey(Team, on_delete=models.CASCADE, verbose_name='Сотрудник')
     cost = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
 
     def __str__(self):
-        return f'{self.lesson_type}, {self.cost}, {self.team_member}'
+        return f'{self.cost} руб.'
 
     class Meta:
-        ordering = ['lesson_type', 'team_member']
+        ordering = ['cost']
         verbose_name = 'Стоимость'
         verbose_name_plural = 'Стоимости'
 
@@ -64,13 +61,15 @@ class Lessons(models.Model):
     name = models.ForeignKey(LessonsType, verbose_name='Занятие', on_delete=models.CASCADE, null=True)
     is_active = models.BooleanField(default=True, verbose_name='Актив')
     lesson_age = models.ManyToManyField(AgeGroups, verbose_name='Возрастная группа')
+    team_member = models.ForeignKey(Team, verbose_name='Преподаватель', on_delete=models.CASCADE, null=True)
     cost = models.ForeignKey(Costs, on_delete=models.CASCADE, verbose_name='Цена')
     days = models.ManyToManyField(WeekDays, through='TimeTable', through_fields=('lessons', 'days'),
                                   verbose_name='Расписание')
     duration = models.IntegerField(verbose_name='Длительность в минутах')
+    group_lesson = models.BooleanField(default=True, verbose_name='Групповое занятие')
 
     def __str__(self):
-        return f'{self.name}: {self.cost.team_member}'
+        return f'{self.name}: {self.team_member}, {"групповое" if self.group_lesson else "индивидуальное"}'
 
     class Meta:
         verbose_name = 'Занятие'
