@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from team.models import Team
 
 
-
 class Reviews(models.Model):
     """Отзывы о преподавателях и студии"""
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
@@ -17,7 +16,3 @@ class Reviews(models.Model):
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
         ordering = ['date']
-
-
-
-
