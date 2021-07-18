@@ -80,3 +80,10 @@ class TimeTable(models.Model):
     days = models.ForeignKey(WeekDays, on_delete=models.CASCADE, null=True)
     lessons = models.ForeignKey(Lessons, on_delete=models.CASCADE, null=True)
     time_start = models.TimeField(default='12:00:00')
+
+    def __str__(self):
+        return f'{self.days} {self.time_start}'
+
+    class Meta:
+        verbose_name = 'Расписание занятия'
+        verbose_name_plural = 'Расписания занятий'
