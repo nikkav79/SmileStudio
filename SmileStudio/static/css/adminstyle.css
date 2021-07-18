@@ -1,0 +1,68 @@
+#user-tools {
+    font-size: 16px;
+    color: #EAC117;
+}
+
+td, th {
+    font-size: 16px;
+}
+
+body {
+    font-size: 16px;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: #033E3E;
+    width: 80%;
+    color: #EAC117;
+}
+
+#header {
+    background: #033E3E;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: #033E3E;
+}
+
+a.section:link, a.section:visited {
+    color: #EAC117;
+}
+
+.module caption, .inline-group h2 {
+    font-size: 14px;
+}
+
+#header a:link, #header a:visited {
+    color: #EAC117;
+}
+
+div.breadcrumbs {
+    background: #045F5F;
+
+}
+
+input, textarea, select, .form-row p, form .button {
+    font-size: 16px;
+}
+
+.submit-row input.default {
+    margin: 0 0 10px 8px !important;
+}
+
+.submit-row input {
+    margin: 0 0 10px 5px !important;
+}
+
+
+.login {
+    background: #045F5F !important;
+}
+
+.mini {
+    font-size: 13px;
+}
+
+li, dt, dd {
+    font-size: 15px;
+}

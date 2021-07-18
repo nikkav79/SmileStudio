@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from SmStSi.views import index
-from SmStSi.views import categories
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('SmileStudio/', include('SmStSi.urls'))
+    path('SmileStudio/', include('about.urls')),
+    path('SmileStudio/', include('lessons.urls')),
+    path('SmileStudio/', include('mainpage.urls')),
+    path('SmileStudio/', include('media.urls')),
+    path('SmileStudio/', include('news.urls')),
+    path('SmileStudio/', include('reviews.urls')),
+    path('SmileStudio/', include('team.urls'))
 ]

@@ -1,0 +1,11 @@
+[
+{
+  "model": "SmStSi.specialization",
+  "pk": 2,
+  "fields": {
+    "name": "Психолог",
+    "description": "Новое описание психолога",
+    "is_active": true
+  }
+},
+]
