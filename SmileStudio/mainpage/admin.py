@@ -8,7 +8,7 @@ from team.models import *
 
 
 class VacancyAdmin(admin.ModelAdmin):
-    list_display = ('specialization', 'contract', 'date_add', 'is_active')
+    list_display = ('specialization', 'contract', 'created_at', 'is_active')
     list_display_links = ('specialization',)
     search_fields = ('specialization', 'description')
 
