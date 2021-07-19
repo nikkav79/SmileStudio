@@ -25,5 +25,6 @@ urlpatterns = [
     path('SmileStudio/', include('media.urls')),
     path('SmileStudio/', include('news.urls')),
     path('SmileStudio/', include('reviews.urls')),
-    path('SmileStudio/', include('team.urls'))
+    path('team/', include('team.urls')),
+    path('vacancies/', include('team.urls')),
 ]
