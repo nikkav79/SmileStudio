@@ -4,5 +4,5 @@ from django.contrib import admin
 # from media.models import *
 # from news.models import *
 # from reviews.models import *
-# from team.models import *
+# from work.models import *
 

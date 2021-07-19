@@ -31,20 +31,23 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'about.apps.AboutConfig',
-    'lessons.apps.LessonsConfig',
-    'mainpage.apps.MainpageConfig',
-    'media.apps.MediaConfig',
-    'news.apps.NewsConfig',
-    'reviews.apps.ReviewsConfig',
-    'team.apps.TeamConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'phone_field'
+
+    'about.apps.AboutConfig',
+    'lessons.apps.LessonsConfig',
+    'mainpage.apps.MainpageConfig',
+    'media.apps.MediaConfig',
+    'news.apps.NewsConfig',
+    'reviews.apps.ReviewsConfig',
+    'work.apps.TeamConfig',
+    'work.apps.WorkConfig',
+
+    'phone_field',
 ]
 
 MIDDLEWARE = [
@@ -85,12 +88,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': 'C:/Program Files/MySQL/MySQL Server 8.0/etc/my.cnf', 'charset': 'utf8mb4',
+            'read_default_file': 'C:/Program Files/MySQL/MySQL Server 8.0/etc/my.cnf',
         },
-        'TEST_CHARSET': 'utf8mb4',
         'NAME': 'SmileStudio',
-        'USER': 'django',
-        'PASSWORD': '12345',
+        'USER': 'root',
+        'PASSWORD': '1234',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
