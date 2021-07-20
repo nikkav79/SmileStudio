@@ -1,7 +1,8 @@
+{% extends 'static.header.html' %}
 
 {% for vacancy in vacancies %}
     <h2>{{ vacancy.specialization }}</h2>
     <p>{{ vacancy.contract_type }}</p>
     <p>{{ vacancy.specialization.description }}</p>
+    <a href="{% url 'vacancy_distinct_url' slug=vacancy.slug %}">Подробности</a>
 {% endfor %}
-

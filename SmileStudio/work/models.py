@@ -6,6 +6,7 @@ class Vacancy(models.Model):
     """Вакансии"""
     specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE, verbose_name='Специализация')
     contract_type = models.ForeignKey(ContractType, on_delete=models.CASCADE, verbose_name='Тип договора')
+    slug = models.SlugField(max_length=150, unique=True)
     is_active = models.BooleanField(default=True, verbose_name='Вакансия открыта')
 
     description = models.TextField(verbose_name='Описание', blank=True)
