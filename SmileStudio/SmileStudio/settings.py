@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'media.apps.MediaConfig',
     'news.apps.NewsConfig',
     'reviews.apps.ReviewsConfig',
-    'work.apps.TeamConfig',
+    'team.apps.TeamConfig',
     'work.apps.WorkConfig',
 
     'phone_field',

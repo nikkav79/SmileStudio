@@ -1,10 +1,9 @@
 from django.db import models
-from media.models import Media
 
 
 class Team(models.Model):
     """Сотрудники студии"""
-    photo = models.ForeignKey(Media, on_delete=models.PROTECT, verbose_name='Фото сотрудника', blank=True, null=True)
+    photo = models.ForeignKey('media.Media', on_delete=models.PROTECT, verbose_name='Фото сотрудника', blank=True, null=True)
     first_name = models.CharField(max_length=100, verbose_name='Имя')
     last_name = models.CharField(max_length=100, verbose_name='Фамилия')
     experience = models.IntegerField(verbose_name='Стаж', blank=True, null=True)
@@ -29,7 +28,7 @@ class Team(models.Model):
 class Specialization(models.Model):
     """Специализации"""
     name = models.CharField(max_length=150, verbose_name='Наименование')
-    description = models.CharField(max_length=150, verbose_name='Описание', blank=True, null=True)
+    description = models.CharField(max_length=150, verbose_name='Описание', blank=True)
     is_active = models.BooleanField(default=True, verbose_name='Актив')
 
     def __str__(self):

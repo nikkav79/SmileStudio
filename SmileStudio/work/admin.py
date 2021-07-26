@@ -2,10 +2,22 @@ from django.contrib import admin
 from .models import *
 
 
+@admin.register(Vacancy)
 class VacancyAdmin(admin.ModelAdmin):
-    list_display = ('specialization', 'contract_type', 'created_at', 'is_active')
+    prepopulated_fields = {'slug': ('specialization', )}
+    list_display = (
+        'specialization',
+        'contract_type',
+        'created_at',
+        'is_active',
+    )
     list_display_links = ('specialization',)
-    search_fields = ('specialization', 'description')
+    search_fields = (
+        'specialization',
+        'description'
+    )
 
 
-admin.site.register(Vacancy, VacancyAdmin)
+admin.site.register(Responsibilities)
+admin.site.register(Requirements)
+admin.site.register(Conditions)
