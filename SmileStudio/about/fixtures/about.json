@@ -1,0 +1,61 @@
+[
+  {
+    "model": "about.ContactDetails",
+    "pk": 1,
+    "fields": {
+      "city": "Москва",
+      "district": "ЗелАО (Зеленоград)",
+      "street": "no_street",
+      "building": "к421А",
+      "postcode": "124498",
+      "phone": "+7(926)0344454",
+      "email": "ssmile.zel@gmail.com",
+      "location": "map_script",
+      "requisites": "some_requisites",
+      "starting_work_weekdays": "9:00",
+      "finishing_work_weekdays": "21:00",
+      "starting_work_weekends": "9:00",
+      "finishing_work_weekends": "21:00"
+    }
+  },
+  {
+    "model": "about.SocialNetworks",
+    "pk": 1,
+    "fields": {
+      "name": "ВКонтакте",
+      "link": "vk.com"
+    }
+  },
+    {
+    "model": "about.SocialNetworks",
+    "pk": 2,
+    "fields": {
+      "name": "Instagram",
+      "link": "instagram.com"
+    }
+  },
+    {
+    "model": "about.SocialNetworks",
+    "pk": 3,
+    "fields": {
+      "name": "WhatsApp",
+      "link": "whatsapp.com"
+    }
+  },
+    {
+    "model": "about.SocialNetworks",
+    "pk": 4,
+    "fields": {
+      "name": "Telegram",
+      "link": "telegram.com"
+    }
+  },
+    {
+    "model": "about.SocialNetworks",
+    "pk": 5,
+    "fields": {
+      "name": "Facebook",
+      "link": "facebook.com"
+    }
+  }
+]
