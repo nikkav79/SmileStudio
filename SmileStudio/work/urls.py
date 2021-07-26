@@ -3,8 +3,6 @@ from .views import *
 
 
 urlpatterns = [
-    path('', VacancyView.vacancy_main,
-         name='vacancy_list_url'),
-    path('<str:slug>', VacancyView.vacancy_distinct,
-         name='vacancy_distinct_url'),
+    path('', vacancy_list, name='vacancy_list'),
+    path('<slug:slug>/', vacancy_detail, name='vacancy_detail'),
 ]
