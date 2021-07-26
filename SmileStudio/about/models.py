@@ -30,7 +30,7 @@ class ContactDetails(models.Model):
     finishing_work_weekends = models.TimeField(verbose_name='Конец работы по выходным', blank=True, null=True)
 
     def __str__(self):
-        return f'{self.city}, {self.street}, {self.building}'
+        return f'{self.city} {self.district} {self.street}'
 
     class Meta:
         verbose_name = 'Контактные данные'

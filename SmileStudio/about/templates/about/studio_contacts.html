@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% load static %}
+
+    {% block title %}
+        <h2>SmileStudio Contacts</h2>
+    {% endblock %}
+
+    {% block address %}
+        <h3>Адрес:</h3>
+        <p>
+            {{ contacts.city }},&nbsp&nbsp{{contacts.district}},
+            &nbsp&nbsp{{contacts.street}},&nbsp&nbsp{{contacts.building}}
+        </p>
+    {% endblock %}
+
+    {% block postcode %}
+        <h3>Индекс:</h3>
+        <p>
+            {{ contacts.postcode }}
+        </p>
+    {% endblock %}
+
+    {% block phone %}
+        <h4>Телефон:</h4>
+        <p>
+            {{ contacts.phone }}
+        </p>
+    {% endblock %}
+
+    {% block email %}
+        <h3>Электронная почта:</h3>
+        <p>
+            {{ contacts.email }}
+        </p>
+    {% endblock %}
+
+    {% block workhrs %}
+        <h3>Время работы:</h3>
+        <p>
+            Понедельник-Пятница с {{ contacts.starting_work_weekdays }} до {{ contacts.finishing_work_weekdays }}
+        </p>
+        <p>
+            Суббота-Воскресенье с {{ contacts.starting_work_weekends }} до {{ contacts.finishing_work_weekends }}
+        </p>
+    {% endblock %}
+
+    {% block map %}
+        <p>
+            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A28f3614871cd5776b6c66a1fa7c1cf0ee4f3e0b0f218e3c10a295bef26d538e1&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true">
+            </script>
+        </p>
+    {% endblock %}
+
+    {% block socialnet %}
+        <h3>Мы в соцсетях:</h3>
+        <div style="display: flex" >
+            <p>
+                <a href="https://{{ vk.link }}" target="_blank">
+                    <img src="{% static 'images/vk.png' %}" alt="ВКонтакте" width="50" height="50" style="margin-right: 20px;">
+                </a>
+            </p>
+            <p>
+                <a href="https://{{ telegram.link }}" target="_blank">
+                    <img src="{% static 'images/telegram.png' %}" alt="Telegram" width="50" height="50" style="margin-right: 20px;">
+                </a>
+            </p>
+            <p>
+                <a href="https://{{ instagram.link }}" target="_blank">
+                    <img src="{% static 'images/instagram.png' %}" alt="Instagram" width="50" height="50" style="margin-right: 20px;">
+                </a>
+            </p>
+            <p>
+                <a href="https://{{ whatsapp.link }}" target="_blank">
+                    <img src="{% static 'images/whatsapp.png' %}" alt="WhatsApp" width="50" height="50" style="margin-right: 20px;">
+                </a>
+            </p>
+            <p>
+                <a href="https://{{ facebook.link }}" target="_blank">
+                    <img src="{% static 'images/fb.png' %}" alt="Facebook" width="50" height="50">
+                </a>
+            </p>
+        </div>
+    {% endblock %}
+</body>
+</html>
