@@ -54,7 +54,9 @@
 
     {% block map %}
         <p>
-            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A28f3614871cd5776b6c66a1fa7c1cf0ee4f3e0b0f218e3c10a295bef26d538e1&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+            <script type="text/javascript" charset="utf-8" async src="https://{{ contacts.location }}">
+               Расположение студии
+            </script>
         </p>
     {% endblock %}
 

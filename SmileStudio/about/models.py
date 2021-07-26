@@ -22,7 +22,7 @@ class ContactDetails(models.Model):
     postcode = models.PositiveBigIntegerField(verbose_name='Индекс')
     phone = PhoneField(blank=True, help_text='Contact phone number', verbose_name='Телефон')
     email = models.EmailField(max_length=254, blank=True, verbose_name='Электронная почта')
-    location = models.CharField(max_length=255, verbose_name='Расположение на карте', blank=True, null=True)
+    location = models.TextField(default='', verbose_name='Расположение на карте', blank=True, null=True)
     requisites = models.CharField(max_length=255, verbose_name='Реквизиты', blank=True, null=True)
     starting_work_weekdays = models.TimeField(verbose_name='Начало работы в будние', blank=True, null=True)
     finishing_work_weekdays = models.TimeField(verbose_name='Конец работы в будние', blank=True, null=True)
