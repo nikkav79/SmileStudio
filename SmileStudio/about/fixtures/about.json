@@ -10,7 +10,7 @@
       "postcode": "124498",
       "phone": "+7(926)0344454",
       "email": "ssmile.zel@gmail.com",
-      "location": "map_script",
+      "location": "api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab5676d25ff4e68cb9eb7b6c7ca0a0e7a388c996f73dd2030e9cc49e3206d16da&amp;width=600&amp;height=450&amp;lang=ru_RU&amp;scroll=true",
       "requisites": "some_requisites",
       "starting_work_weekdays": "9:00",
       "finishing_work_weekdays": "21:00",
