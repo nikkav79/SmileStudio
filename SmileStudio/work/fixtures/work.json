@@ -1,0 +1,226 @@
+[
+    {
+        "model": "work.Responsibilities",
+        "pk": 1,
+        "fields": {
+            "text": "Разработка и организация занятий в соответствии с предложенными методиками и концепцией."
+        }
+    },
+    {
+        "model": "work.Responsibilities",
+        "pk": 2,
+        "fields": {
+            "text": "Проведение открытых занятий для родителей 1 раз в квартал."
+        }
+    },
+    {
+        "model": "work.Responsibilities",
+        "pk": 3,
+        "fields": {
+            "text": "Участие в отчетных мероприятиях студии."
+        }
+    },
+    {
+        "model": "work.Requirements",
+        "pk": 1,
+        "fields": {
+            "text": "Высшее профильное образование (педагогическое, психологическое, дефектологическое)."
+        }
+    },
+    {
+        "model": "work.Requirements",
+        "pk": 2,
+        "fields": {
+            "text": "Опыт работы с детьми дошкольного возраста в коммерческих структурах."
+        }
+    },
+    {
+        "model": "work.Requirements",
+        "pk": 3,
+        "fields": {
+            "text": "Владение основами обучения грамоте и формирования математических представлений у детей дошкольного возраста."
+        }
+    },
+    {
+        "model": "work.Requirements",
+        "pk": 4,
+        "fields": {
+            "text": "Умение находить индивидуальный подход к каждому ученику и его родителю."
+        }
+    },
+    {
+        "model": "work.Requirements",
+        "pk": 5,
+        "fields": {
+            "text": "Грамотная речь. Коммуникабельность, умение работать в команде, желание развиваться вместе с нами."
+        }
+    },
+    {
+        "model": "work.Requirements",
+        "pk": 6,
+        "fields": {
+            "text": "Ответственность, пунктуальность, аккуратность."
+        }
+    },
+    {
+        "model": "work.Requirements",
+        "pk": 7,
+        "fields": {
+            "text": "Инициативность, творческий подход к работе, желание работать с детьми."
+        }
+    },
+    {
+        "model": "work.Conditions",
+        "pk": 1,
+        "fields": {
+            "text": "Работа в молодом и дружном коллективе, готовом к развитию и новым идеям."
+        }
+    },
+    {
+        "model": "work.Conditions",
+        "pk": 2,
+        "fields": {
+            "text": "Комфортное помещение и современное дидактическое оборудование клуба."
+        }
+    },
+    {
+        "model": "work.Conditions",
+        "pk": 3,
+        "fields": {
+            "text": "Занятость во второй половине дня с 16 до 20 (2/4 раза в неделю). "
+        }
+    },
+    {
+        "model": "work.Conditions",
+        "pk": 4,
+        "fields": {
+            "text": "З/п по итогам собеседования."
+        }
+    },
+    {
+        "model": "team.ContractType",
+        "pk": 1,
+        "fields": {
+            "name": "постоянный"
+        }
+    },
+    {
+        "model": "team.ContractType",
+        "pk": 2,
+        "fields": {
+            "name": "временный"
+        }
+    },
+    {
+        "model": "work.Vacancy",
+        "pk": 1,
+        "fields": {
+            "specialization": "Педагог по подготовке к школе",
+            "contract_type": "1",
+            "description": "Проведение занятий с детьми дошкольного возраста по возрастным группам (5-6 и 6-7 лет)",
+            "responsibilities": [
+                1,
+                2,
+                3
+            ],
+            "requirements": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+            ],
+            "conditions": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "created_at": "2021-07-24",
+            "slug": "pedagog-po-podgotovke-k-shkole"
+        }
+    },
+    {
+        "model": "work.Vacancy",
+        "pk": 2,
+        "fields": {
+            "specialization": "Психолог",
+            "contract_type": 2,
+            "description": "Психологические дела",
+            "responsibilities": [
+                1,
+                2,
+                3
+            ],
+            "requirements": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+            ],
+
+            "created_at": "2021-07-25",
+            "slug": "psiholog"
+        }
+    },
+    {
+        "model": "work.Vacancy",
+        "pk": 3,
+        "fields": {
+            "specialization": "Еще какой-нибудь педагог",
+            "contract_type": "1",
+            "description": "Еще какое-нибудь описание, по сути заглушка текста",
+            "responsibilities": [
+                1,
+                2,
+                3
+            ],
+
+            "conditions": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "created_at": "2021-07-26",
+            "slug": "eshe-kakoj-nibud-pedagog"
+        }
+    },
+    {
+        "model": "work.Vacancy",
+        "pk": 4,
+        "fields": {
+            "specialization": "Название должности, ее мы увидеть не должны",
+            "contract_type": "2",
+            "description": "Эта вакансия закрыта, описание мы увидеть не должны",
+            "responsibilities": [
+                1,
+                2,
+                3
+            ],
+            "requirements": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+            ],
+            "conditions": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "created_at": "2021-07-24",
+            "is_active": "False",
+            "slug": "nazvanie-dolzhnosti-ee-my-uvidet-ne-dolzhny"
+        }
+    }
+]
