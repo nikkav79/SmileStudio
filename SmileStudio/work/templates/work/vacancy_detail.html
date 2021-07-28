@@ -1,0 +1,33 @@
+
+<h1>{{ vacancy.name }}</h1>
+<h3>Контракт {{ vacancy.contract_type }}</h3>
+<p>{{ vacancy.description}}</p>
+
+{% if vacancy.responsibilities.all %}
+    <p>Обязанности</p>
+    <ul>
+        {% for responsibility in vacancy.responsibilities.all %}
+            <li>{{ responsibility.text }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if vacancy.requirements.all %}
+    <p>Требования</p>
+    <ul>
+        {% for requirement in vacancy.requirements.all %}
+            <li>{{ requirement.text }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if vacancy.conditions.all %}
+    <p>Условия</p>
+    <ul>
+        {% for condition in vacancy.conditions.all %}
+            <li>{{ condition.text }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h6>{{ vacancy.created_at | date:'d.m.Y' }}</h6>
