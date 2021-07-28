@@ -8,7 +8,8 @@ class Vacancy(models.Model):
         verbose_name_plural = 'Вакансии'
         ordering = ['is_active', '-created_at']
 
-    specialization = models.ForeignKey('team.Specialization', blank=True, null=True, verbose_name='Специализация')
+    specialization = models.ForeignKey('team.Specialization', on_delete=PROTECT, blank=True, null=True,
+                                       verbose_name='Специализация')
     name = models.CharField(max_length=255, verbose_name='Название вакансии')
     contract_type = models.ForeignKey('team.ContractType', on_delete=models.PROTECT, verbose_name='Тип договора')
 
