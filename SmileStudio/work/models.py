@@ -8,11 +8,11 @@ class Vacancy(models.Model):
         verbose_name_plural = 'Вакансии'
         ordering = ['is_active', '-created_at']
 
+    specialization = models.ForeignKey('team.Specialization', blank=True, null=True, verbose_name='Специализация')
     name = models.CharField(max_length=255, verbose_name='Название вакансии')
-    specialization = models.ForeignKey('team.Specialization', verbose_name='Специализация')
     contract_type = models.ForeignKey('team.ContractType', on_delete=models.PROTECT, verbose_name='Тип договора')
-    description = models.TextField(verbose_name='Описание', blank=True)
 
+    description = models.TextField(verbose_name='Описание', blank=True)
     responsibilities = models.ManyToManyField('Responsibilities', blank=True, verbose_name='Обязанности')
     requirements = models.ManyToManyField('Requirements', blank=True, verbose_name='Требования')
     conditions = models.ManyToManyField('Conditions', blank=True, verbose_name='Условия')
@@ -25,7 +25,7 @@ class Vacancy(models.Model):
         return reverse('vacancy_detail', kwargs={'slug': self.slug})
 
     def __str__(self):
-        return f'{self.is_active} {self.specialization} {self.created_at}'
+        return f'{self.is_active} {self.name} {self.created_at}'
 
 
 class VacancyEnumeration(models.Model):

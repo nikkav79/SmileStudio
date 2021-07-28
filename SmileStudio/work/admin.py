@@ -4,17 +4,18 @@ from .models import *
 
 @admin.register(Vacancy)
 class VacancyAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name', )}
+    prepopulated_fields = {
+        'slug': ('name'),
+        'name': ('specialization')
+    }
     list_display = (
-        'specialization',
+        'name',
         'contract_type',
         'created_at',
         'is_active',
     )
-    list_display_links = ('specialization',)
     search_fields = (
-        'specialization',
-        'description'
+        'name',
     )
 
 
