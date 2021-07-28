@@ -16,14 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
 urlpatterns = [
+    path('', include('mainpage.urls')),
     path('admin/', admin.site.urls),
-    path('Smilestudio/', include('about.urls')),
-    path('SmileStudio/', include('lessons.urls')),
-    path('SmileStudio/', include('mainpage.urls')),
-    path('SmileStudio/', include('media.urls')),
-    path('SmileStudio/', include('news.urls')),
-    path('SmileStudio/', include('reviews.urls')),
+
+    path('about/', include('about.urls')),
+    path('lessonns/', include('lessons.urls')),
+    path('media/', include('media.urls')),
+    path('news/', include('news.urls')),
+    path('rewies/', include('reviews.urls')),
+    path('team/', include('team.urls')),
     path('vacancy/', include('work.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/', include('api_service.urls')),
 ]
