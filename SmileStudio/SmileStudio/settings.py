@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'reviews.apps.ReviewsConfig',
     'team.apps.TeamConfig',
+    'work.apps.WorkConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api_service.apps.ApiServiceConfig',
+
     'phone_field',
     'rest_framework',
 ]
@@ -86,12 +88,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': 'C:/Program Files/MySQL/MySQL Server 8.0/etc/my.cnf', 'charset': 'utf8mb4',
+            'read_default_file': 'C:/Program Files/MySQL/MySQL Server 8.0/etc/my.cnf',
         },
-        'TEST_CHARSET': 'utf8mb4',
         'NAME': 'SmileStudio',
-        'USER': 'django',
-        'PASSWORD': '12345',
+        'USER': 'root',
+        'PASSWORD': '1234',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
