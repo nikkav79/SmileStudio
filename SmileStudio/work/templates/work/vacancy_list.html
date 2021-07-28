@@ -1,0 +1,11 @@
+
+{% if not vacancies %}
+    <h2>Открытых вакнсий нет</h2>
+{% else %}
+    {% for vacancy in vacancies %}
+        <h2>{{ vacancy.name }}</h2>
+        <p>{{ vacancy.contract_type }}</p>
+        <p>{{ vacancy.description }}</p>
+        <a href="{{ vacancy.get_absolute_url }}">Подробности</a>
+    {% endfor %}
+{% endif %}

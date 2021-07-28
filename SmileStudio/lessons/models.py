@@ -80,3 +80,4 @@ class TimeTable(models.Model):
     days = models.ForeignKey(WeekDays, on_delete=models.CASCADE, null=True)
     lessons = models.ForeignKey(Lessons, on_delete=models.CASCADE, null=True)
     time_start = models.TimeField(default='12:00:00')
+
