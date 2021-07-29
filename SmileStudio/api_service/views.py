@@ -1,14 +1,4 @@
-from django.shortcuts import render
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework import generics
-from .serializers import *
+from django.shortcuts import render, get_object_or_404
 
-
-class SpecializationListView(generics.ListAPIView):
-    """Вывод списка специализаций"""
-    serializer_class = SpecializationListSerializer
-
-    def get_queryset(self):
-        specializations = Specialization.objects.filter(is_active=True)
-        return specializations
+def fill(request):
+    pass

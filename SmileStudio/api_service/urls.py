@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import SpecializationListView
+from .views import *
 
 urlpatterns = [
-    path('team/specializations/', SpecializationListView.as_view())
+    path('', fill),
 ]
