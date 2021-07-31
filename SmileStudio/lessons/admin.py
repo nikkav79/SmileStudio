@@ -15,6 +15,6 @@ class LessonsAdmin(admin.ModelAdmin):
 
 admin.site.register(AgeGroups)
 admin.site.register(LessonsType)
-admin.site.register(Costs)
+admin.site.register(CostsParam)
 admin.site.register(WeekDays)
 admin.site.register(Lessons, LessonsAdmin)

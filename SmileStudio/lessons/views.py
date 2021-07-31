@@ -1,10 +1,28 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+from .models import *
+from team.models import *
 
+
+def age_groups_lessons(request):
+    age_groups = AgeGroups.objects.all()
+    return render(request,
+                  template_name='lessons/lessons_age_groups.html',
+                  context={'age_groups': age_groups
+                           })
 
 def lessons(request):
-    n = ['Oleg', 'Masha', 'Olya', 'Ksu']
-    return render(request, 'lessons/lessons.html', context={'names': n})
+    pass
 
-def lesson(request):
-    return HttpResponse("<h4>ЗАНЯТИЕ<h4>")
+def lessons_details(request, pk):
+    lesson_type = LessonsType.objects.get(pk=pk)
+    lesson_detail = lesson_type.lessons_set.all()
+
+    return render(request,
+                  template_name='lessons/lessons_details.html',
+                  context={'lesson_type': lesson_type,
+                           'lesson_detail': lesson_detail
+                           })
+
+

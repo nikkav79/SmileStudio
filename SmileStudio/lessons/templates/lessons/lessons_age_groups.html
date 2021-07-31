@@ -1,0 +1,21 @@
+{% extends 'lessons/lessons_base.html' %}
+
+{% block content %}
+
+	<div>
+		{% for group in age_groups %}
+		<div>{{ group.name }}</div>
+		<ul>
+			{% for lesson in group.lessonstype_set.all %}
+				{{ lesson.lessons_set.all }}
+				<li><a href="{% url 'lessons_details' pk=lesson.id %}">{{ lesson.name }}</a></li>
+				
+			{% endfor %}
+		</ul>
+		{% endfor %}
+	</div>
+	{{ lesson.lessons_set.all }}
+{% endblock %}
+
+
+

@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Title</title>
+	
+	<title>{% block title %}
+	            Здесь будет титл
+	       {% endblock %}
+	</title>
 </head>
-<body>
-
-</body>
+{% block body %}
+	Another content
+{% endblock %}
 </html>

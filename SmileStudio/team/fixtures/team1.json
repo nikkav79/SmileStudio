@@ -1,0 +1,225 @@
+[
+{
+  "model": "team.specialization",
+  "pk": 1,
+  "fields": {
+    "name": "Педагог по раннему развитию",
+    "description": "Педагог по раннему развитию",
+    "is_active": true
+  }
+},
+{
+  "model": "team.specialization",
+  "pk": 2,
+  "fields": {
+    "name": "Педагог по подготовке к школе",
+    "description": "Педагог по подготовке к школе",
+    "is_active": true
+  }
+},
+{
+  "model": "team.specialization",
+  "pk": 3,
+  "fields": {
+    "name": "Нейропсихолог",
+    "description": "Нейропсихолог",
+    "is_active": true
+  }
+},
+{
+  "model": "team.specialization",
+  "pk": 4,
+  "fields": {
+    "name": "Психолог",
+    "description": "Психолог",
+    "is_active": true
+  }
+},
+{
+  "model": "team.specialization",
+  "pk": 5,
+  "fields": {
+    "name": "Тренер по шахматам",
+    "description": "Тренер по шахматам",
+    "is_active": true
+  }
+},
+{
+  "model": "team.position",
+  "pk": 1,
+  "fields": {
+    "name": "Руководитель студии",
+    "description": "Руководитель студии",
+    "is_active": true
+  }
+},
+{
+  "model": "team.position",
+  "pk": 2,
+  "fields": {
+    "name": "Менеджер по работе с клиентами",
+    "description": "Менеджер по работе с клиентами",
+    "is_active": true
+  }
+},
+{
+  "model": "team.position",
+  "pk": 3,
+  "fields": {
+    "name": "Администратор",
+    "description": "Администратор",
+    "is_active": true
+  }
+},
+{
+  "model": "team.contracttype",
+  "pk": 1,
+  "fields": {
+    "name": "Постоянный"
+  }
+},
+{
+  "model": "team.contracttype",
+  "pk": 2,
+  "fields": {
+    "name": "Временный длительный"
+  }
+},
+{
+  "model": "team.contracttype",
+  "pk": 3,
+  "fields": {
+    "name": "Временный краткосрочный"
+  }
+},
+{
+  "model": "team.team",
+  "pk": 1,
+  "fields": {
+    "photo": null,
+    "first_name": "Лариса",
+    "last_name": "Никулина",
+    "experience": 10,
+    "education": "Лариса Никулина образование",
+    "contract": 1,
+    "ad_information": "Дополнительная информация Лариса Никулина",
+    "is_active": true,
+    "specialization": [
+      1,
+      3
+    ],
+    "positions": [
+      1
+    ]
+  }
+},
+{
+  "model": "team.team",
+  "pk": 2,
+  "fields": {
+    "photo": null,
+    "first_name": "Таисия",
+    "last_name": "Пикалева",
+    "experience": 10,
+    "education": "Образование Таисия Пикалева",
+    "contract": 1,
+    "ad_information": "Дополнительная информация Таисия Пикалева",
+    "is_active": true,
+    "specialization": [],
+    "positions": [
+      2
+    ]
+  }
+},
+{
+  "model": "team.team",
+  "pk": 3,
+  "fields": {
+    "photo": null,
+    "first_name": "Светлана",
+    "last_name": "Атяскина",
+    "experience": 10,
+    "education": "Образование Светлана Атяскина",
+    "contract": 1,
+    "ad_information": "Дополнительная информация Светлана Атяскина",
+    "is_active": true,
+    "specialization": [],
+    "positions": [
+      3
+    ]
+  }
+},
+{
+  "model": "team.team",
+  "pk": 4,
+  "fields": {
+    "photo": null,
+    "first_name": "Кристина",
+    "last_name": "Мосина",
+    "experience": 10,
+    "education": "Образование Кристина Мосина",
+    "contract": 1,
+    "ad_information": "Дополнительная информация Кристина Мосина",
+    "is_active": true,
+    "specialization": [
+      1,
+      2
+    ],
+    "positions": []
+  }
+},
+{
+  "model": "team.team",
+  "pk": 5,
+  "fields": {
+    "photo": null,
+    "first_name": "Надежда",
+    "last_name": "Саралидзе",
+    "experience": 10,
+    "education": "Образование Надежда Саралидзе",
+    "contract": 1,
+    "ad_information": "Дополнительная информация Надежда Саралидзе",
+    "is_active": true,
+    "specialization": [
+      3
+    ],
+    "positions": []
+  }
+},
+{
+  "model": "team.team",
+  "pk": 6,
+  "fields": {
+    "photo": null,
+    "first_name": "Татьяна",
+    "last_name": "Петрова",
+    "experience": 10,
+    "education": "Образование Татьяна Петрова",
+    "contract": 1,
+    "ad_information": "Дополнительная информация Татьяна Петрова",
+    "is_active": true,
+    "specialization": [
+      4
+    ],
+    "positions": []
+  }
+},
+{
+  "model": "team.team",
+  "pk": 7,
+  "fields": {
+    "photo": null,
+    "first_name": "Юрий",
+    "last_name": "Досаев",
+    "experience": 10,
+    "education": "Образование Юрий Досаев",
+    "contract": 1,
+    "ad_information": "Дополнительная информация Юрий Досаев",
+    "is_active": true,
+    "specialization": [
+      5
+    ],
+    "positions": []
+  }
+}
+]

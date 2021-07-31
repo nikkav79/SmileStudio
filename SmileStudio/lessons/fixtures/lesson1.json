@@ -1,0 +1,246 @@
+[
+{
+  "model": "lessons.agegroups",
+  "pk": 1,
+  "fields": {
+    "name": "1-3 года",
+    "description": "Возрастная категория 1-3 года"
+  }
+},
+{
+  "model": "lessons.agegroups",
+  "pk": 2,
+  "fields": {
+    "name": "3-5 лет",
+    "description": "Возрастная категория 3-5 лет"
+  }
+},
+{
+  "model": "lessons.agegroups",
+  "pk": 3,
+  "fields": {
+    "name": "5-7 лет",
+    "description": "Возрастная категория 5-7 лет"
+  }
+},
+{
+  "model": "lessons.agegroups",
+  "pk": 4,
+  "fields": {
+    "name": "7-12 лет",
+    "description": "Возрастная категория 7-12 лет"
+  }
+},
+{
+  "model": "lessons.lessonstype",
+  "pk": 1,
+  "fields": {
+    "name": "Раннее развитие",
+    "description": "Описание раннее развитие",
+    "photo": null,
+    "improves_skills": "Навыки раннее развитие",
+    "lessontype_age": [
+      1
+    ]
+  }
+},
+{
+  "model": "lessons.lessonstype",
+  "pk": 2,
+  "fields": {
+    "name": "Нейропсихолог",
+    "description": "Описание Нейропсихолог",
+    "photo": null,
+    "improves_skills": "Навыки Нейропсихолог",
+    "lessontype_age": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "lessons.lessonstype",
+  "pk": 3,
+  "fields": {
+    "name": "Нейрологопед",
+    "description": "Описание Нейрологопед",
+    "photo": null,
+    "improves_skills": "Навыки Нейрологопед",
+    "lessontype_age": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "lessons.lessonstype",
+  "pk": 4,
+  "fields": {
+    "name": "Психолог",
+    "description": "Описание Психолог",
+    "photo": null,
+    "improves_skills": "Навыки Психолог",
+    "lessontype_age": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "lessons.lessonstype",
+  "pk": 5,
+  "fields": {
+    "name": "Интеллектуальное развитие",
+    "description": "Описание Интеллектуальное развитие",
+    "photo": null,
+    "improves_skills": "Навыки Интеллектуальное развитие",
+    "lessontype_age": [
+      2
+    ]
+  }
+},
+{
+  "model": "lessons.lessonstype",
+  "pk": 6,
+  "fields": {
+    "name": "Читай-ка",
+    "description": "Описание Читай-ка",
+    "photo": null,
+    "improves_skills": "Навыки Читай-ка",
+    "lessontype_age": [
+      2
+    ]
+  }
+},
+{
+  "model": "lessons.lessonstype",
+  "pk": 7,
+  "fields": {
+    "name": "Считай-ка",
+    "description": "Описание Считай-ка",
+    "photo": null,
+    "improves_skills": "Навыки Считай-ка",
+    "lessontype_age": [
+      2
+    ]
+  }
+},
+{
+  "model": "lessons.lessonstype",
+  "pk": 8,
+  "fields": {
+    "name": "Подготовка к школе",
+    "description": "Описание подготовка к школе",
+    "photo": null,
+    "improves_skills": "Навыки Подготовка к школе",
+    "lessontype_age": [
+      3
+    ]
+  }
+},
+{
+  "model": "lessons.lessonstype",
+  "pk": 9,
+  "fields": {
+    "name": "Шахамты",
+    "description": "Описание шахматы",
+    "photo": null,
+    "improves_skills": "Навыки шахматы",
+    "lessontype_age": [
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "lessons.lessonstype",
+  "pk": 10,
+  "fields": {
+    "name": "Summer Camp",
+    "description": "Описание Summer Camp",
+    "photo": null,
+    "improves_skills": "Навыки Summer Camp",
+    "lessontype_age": [
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "lessons.lessonstype",
+  "pk": 11,
+  "fields": {
+    "name": "Репетитор начальной школы",
+    "description": "Описание Репетитор начальной школы",
+    "photo": null,
+    "improves_skills": "Навыки Репетитор начальной школы",
+    "lessontype_age": [
+      4
+    ]
+  }
+},
+{
+  "model": "lessons.costsparam",
+  "pk": 3,
+  "fields": {
+    "format": "s",
+    "duration": 50,
+    "form_lesson": "g",
+    "cost": "900.00"
+  }
+},
+{
+  "model": "lessons.weekdays",
+  "pk": 1,
+  "fields": {
+    "day": "Понедельник"
+  }
+},
+{
+  "model": "lessons.weekdays",
+  "pk": 2,
+  "fields": {
+    "day": "Вторник"
+  }
+},
+{
+  "model": "lessons.weekdays",
+  "pk": 3,
+  "fields": {
+    "day": "Среда"
+  }
+},
+{
+  "model": "lessons.weekdays",
+  "pk": 4,
+  "fields": {
+    "day": "Четверг"
+  }
+},
+{
+  "model": "lessons.weekdays",
+  "pk": 5,
+  "fields": {
+    "day": "Пятница"
+  }
+},
+{
+  "model": "lessons.weekdays",
+  "pk": 6,
+  "fields": {
+    "day": "Суббота"
+  }
+},
+{
+  "model": "lessons.weekdays",
+  "pk": 7,
+  "fields": {
+    "day": "Воскресенье"
+  }
+}
+]

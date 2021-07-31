@@ -5,8 +5,8 @@ from .models import *
 @admin.register(Vacancy)
 class VacancyAdmin(admin.ModelAdmin):
     prepopulated_fields = {
-        'slug': ('name'),
-        'name': ('specialization')
+        'slug': ('name',),
+        'name': ('specialization',)
     }
     list_display = (
         'name',

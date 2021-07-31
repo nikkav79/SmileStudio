@@ -6,7 +6,7 @@ from about.models import ContactDetails, SocialNetworks
 class ContactsListView(ListView):
     model = ContactDetails
     template_name = 'about/studio_contacts.html'
-    queryset = ContactDetails.objects.all().first()
+    queryset = ContactDetails.objects.all()
     context_object_name = 'contacts'
 
     def get_context_data(self, **kwargs):

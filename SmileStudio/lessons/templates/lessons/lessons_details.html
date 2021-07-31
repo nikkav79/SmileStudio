@@ -1,0 +1,22 @@
+{% extends 'lessons/lessons_base.html' %}
+
+
+{% block content %}
+	<div><h2>Название: {{ lesson_type.name }}</h2></div> <br>
+	<div><p>Описание: {{ lesson_type.description }}</p></div>
+	<div><p>Навыки: {{ lesson_type.improves_skills }}</p></div>
+	
+	<div><p> {% for lesson in lesson_detail %}
+				<br> <br>
+	            Педагог: {{ lesson.team_member }} <br>
+				Детально о занятии:
+				<br>
+				Место проведения:
+	            {% for param in lesson.cost.all %}
+	                {{ param.get_format_display }}
+				{% endfor %}
+	         
+				
+	         {% endfor %}</p></div>
+	
+{% endblock %}

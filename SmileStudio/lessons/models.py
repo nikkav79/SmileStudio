@@ -22,6 +22,7 @@ class LessonsType(models.Model):
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
     photo = models.ForeignKey(Media, on_delete=models.PROTECT, verbose_name='Фото', blank=True, null=True)
     improves_skills = models.CharField(max_length=255, verbose_name='Развивающиеся навыки', blank=True, null=True)
+    lessontype_age = models.ManyToManyField(AgeGroups, verbose_name='Возрастная группа')
 
     def __str__(self):
         return self.name
@@ -31,18 +32,47 @@ class LessonsType(models.Model):
         verbose_name_plural = 'Типы уроков'
 
 
-class Costs(models.Model):
+class Lessons(models.Model):
+    """Занятия"""
+    name = models.ForeignKey(LessonsType, verbose_name='Занятие', on_delete=models.CASCADE, null=True)
+    team_member = models.ForeignKey(Team, verbose_name='Преподаватель', on_delete=models.CASCADE, null=True)
+    cost = models.ManyToManyField('CostsParam', verbose_name='Цена')
+    days = models.ManyToManyField('WeekDays', through='TimeTable', through_fields=('lessons', 'days'),
+                                  verbose_name='Расписание')
+    is_active = models.BooleanField(default=True, verbose_name='Актив')
+
+    def __str__(self):
+        return f'{self.name}: {self.team_member}'
+
+    class Meta:
+        verbose_name = 'Занятие'
+        verbose_name_plural = 'Занятия'
+
+
+class CostsParam(models.Model):
     """Стоимость занятий"""
+    FORMAT = (('o', 'On-line'),
+              ('s', 'В студии')
+              )
+    FORM_LESSONS = (('g', 'Групповое занятие'),
+                    ('i', 'Индивидуальное'),
+                    )
+    PAYMENT_FORMAT = (('a', 'Абонемент'),
+                    ('r', 'Разовое занятие'),
+                    )
+    format = models.CharField(max_length=1, choices=FORMAT, verbose_name='Место проведения')
+    payment_fromat = models.CharField(max_length=1, choices=PAYMENT_FORMAT, verbose_name='Формат оплаты')
+    form_lesson = models.CharField(max_length=1, choices=FORM_LESSONS, verbose_name='Форма проведения')
+    duration = models.IntegerField(verbose_name='Длительность в минутах')
     cost = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
 
     def __str__(self):
-        return f'{self.cost} руб.'
+        return f'{self.format, self.payment_fromat, self.form_lesson, self.duration, self.cost}'
 
     class Meta:
         ordering = ['cost']
-        verbose_name = 'Стоимость'
-        verbose_name_plural = 'Стоимости'
-
+        verbose_name = 'Параметры занятия'
+        verbose_name_plural = 'Параметры занятия'
 
 class WeekDays(models.Model):
     """Дни недели"""
@@ -54,26 +84,6 @@ class WeekDays(models.Model):
     class Meta:
         verbose_name = 'День недели'
         verbose_name_plural = 'Дни недели'
-
-
-class Lessons(models.Model):
-    """Занятия"""
-    name = models.ForeignKey(LessonsType, verbose_name='Занятие', on_delete=models.CASCADE, null=True)
-    is_active = models.BooleanField(default=True, verbose_name='Актив')
-    lesson_age = models.ManyToManyField(AgeGroups, verbose_name='Возрастная группа')
-    team_member = models.ForeignKey(Team, verbose_name='Преподаватель', on_delete=models.CASCADE, null=True)
-    cost = models.ForeignKey(Costs, on_delete=models.CASCADE, verbose_name='Цена')
-    days = models.ManyToManyField(WeekDays, through='TimeTable', through_fields=('lessons', 'days'),
-                                  verbose_name='Расписание')
-    duration = models.IntegerField(verbose_name='Длительность в минутах')
-    group_lesson = models.BooleanField(default=True, verbose_name='Групповое занятие')
-
-    def __str__(self):
-        return f'{self.name}: {self.team_member}, {"групповое" if self.group_lesson else "индивидуальное"}'
-
-    class Meta:
-        verbose_name = 'Занятие'
-        verbose_name_plural = 'Занятия'
 
 
 class TimeTable(models.Model):
