@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from media.models import Media
 from lessons.models import LessonsType
+from django.shortcuts import reverse
 
 
 class NewsFlow(models.Model):
@@ -16,6 +17,10 @@ class NewsFlow(models.Model):
     media = models.ForeignKey(Media, on_delete=models.CASCADE, verbose_name='Медиа', null=True, blank=True)
     topic = models.ForeignKey(LessonsType, on_delete=models.CASCADE, verbose_name='Тематика', null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор', blank=True, null=True)
+    slug = models.SlugField(max_length=150, verbose_name='URL')
+
+    def get_absolute_url(self):
+        return reverse('news_details_url', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title

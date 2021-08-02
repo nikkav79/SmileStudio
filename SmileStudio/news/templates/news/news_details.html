@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	{{ news.title }}
+{% endblock %}
+
+{% block body %}
+	
+	{% block item %}
+			
+			<div class="card mb-4">
+	            <div class="card-header">
+	                {{ item.created }}
+	            </div>
+	            <div class="card-body">
+	                <h5 class="card-title">{{ item.title }}</h5>
+	                <p class="card-text">{{ item.content }}</p>
+	                <p class="card-text">{{ item.author }}</p>
+	            </div>
+			</div>
+			 <br>
+
+	<a href="{% url 'news_posts_url' %}" class="btn btn-success">Вернуться к разделу Новости</a>
+
+	{% endblock %}
+{% endblock %}

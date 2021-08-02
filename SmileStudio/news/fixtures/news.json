@@ -1,0 +1,50 @@
+[
+{
+  "model": "news.newsflow",
+  "pk": 1,
+  "fields": {
+    "created": "2021-07-31T16:04:35.916Z",
+    "modified": "2021-07-31T16:04:35.916Z",
+    "title": "Публикация 1",
+    "digest": "Краткое содержание публикации 1",
+    "content": "Контент публикации 1",
+    "media_url": null,
+    "media": null,
+    "topic": null,
+    "author": 1,
+    "slug": "novost_1"
+  }
+},
+{
+  "model": "news.newsflow",
+  "pk": 2,
+  "fields": {
+    "created": "2021-07-31T16:10:28.941Z",
+    "modified": "2021-07-31T16:10:28.941Z",
+    "title": "Публикация 2",
+    "digest": "Краткое содержание публикации 2",
+    "content": "Контент публикации 2",
+    "media_url": null,
+    "media": null,
+    "topic": null,
+    "author": 1,
+    "slug": "novost_2"
+  }
+},
+{
+  "model": "news.newsflow",
+  "pk": 3,
+  "fields": {
+    "created": "2021-07-31T16:10:28.941Z",
+    "modified": "2021-07-31T16:10:28.941Z",
+    "title": "Публикация 3",
+    "digest": "Краткое содержание публикации 3",
+    "content": "Контент публикации 3",
+    "media_url": null,
+    "media": null,
+    "topic": null,
+    "author": 1,
+    "slug": "novost_3"
+  }
+}
+]
