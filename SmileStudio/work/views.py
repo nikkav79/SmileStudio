@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import *
 
 
+
 def vacancy_list(request):
     context = {'vacancies': Vacancy.objects.filter(is_active=True)}
     return render(request, 'work/vacancy_list.html', context)

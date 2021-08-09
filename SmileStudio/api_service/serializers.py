@@ -1,15 +1,20 @@
 from rest_framework import serializers
-from about.models import StudioDescription, ContactDetails, ContactDetails
-from lessons.models import AgeGroups, LessonsType, WeekDays, Lessons, TimeTable
-from media.models import Media
 from news.models import NewsFlow
-from reviews.models import Reviews
-from team.models import Specialization, Position, ContractType, Team
 
 
-class SpecializationListSerializer(serializers.ModelSerializer):
-    """Список специализаций"""
+class NewsFlowListSerializer(serializers.ModelSerializer):
+    """Список новостей"""
 
     class Meta:
-        model = Specialization
-        fields = '__all__'
+        model = NewsFlow
+        fields = ('created', 'title', 'digest')
+
+
+class NewsFlowDetailsSerializer(serializers.ModelSerializer):
+    """Детали новости"""
+
+    topic = serializers.SlugRelatedField(slug_field='name', read_only=True)
+
+    class Meta:
+        model = NewsFlow
+        exclude = ('digest',)

@@ -18,51 +18,51 @@
 	    {% block address %}
 	        <h3>Адрес:</h3>
 	        <p>
-	            {{ contacts.city }},&nbsp&nbsp{{contacts.district}},&nbsp&nbsp{{contacts.building}}
+	            {{ contact.city }},&nbsp&nbsp{{contact.district}},&nbsp&nbsp{{contact.building}}
 	        </p>
 	    {% endblock %}
 	
 	    {% block postcode %}
 	        <h3>Индекс:</h3>
 	        <p>
-	            {{ contacts.postcode }}
+	            {{ contact.postcode }}
 	        </p>
 	    {% endblock %}
 	
 	    {% block phone %}
 	        <h3>Телефон:</h3>
 	        <p>
-	            {{ contacts.phone }}
+	            {{ contact.phone }}
 	        </p>
 	    {% endblock %}
 	
 	    {% block email %}
 	        <h3>Электронная почта:</h3>
 	        <p>
-	            {{ contacts.email }}
+	            {{ contact.email }}
 	        </p>
 	    {% endblock %}
 	
 	    {% block workhrs %}
 	        <h3>Время работы:</h3>
 	        <p>
-	            Понедельник-Пятница с {{ contacts.starting_work_weekdays }} до {{ contacts.finishing_work_weekdays }}
+	            Понедельник-Пятница с {{ contact.starting_work_weekdays }} до {{ contact.finishing_work_weekdays }}
 	        </p>
 	        <p>
-	            Суббота-Воскресенье с {{ contacts.starting_work_weekends }} до {{ contacts.finishing_work_weekends }}
+	            Суббота-Воскресенье с {{ contact.starting_work_weekends }} до {{ contact.finishing_work_weekends }}
 	        </p>
 	    {% endblock %}
 	
 	    {% block map %}
 	        <p>
-	            <script type="text/javascript" charset="utf-8" async src="https://{{ contacts.location }}">
+	            <script type="text/javascript" charset="utf-8" async src="https://{{ contact.location }}">
 	               Расположение студии
 	            </script>
 	        </p>
 	    {% endblock %}
-	{% for contact in contacts %}
+    {% endfor %}
 	   
-    {% block socialnet %}
+        {% block socialnet %}
 	        <h3>Мы в соцсетях:</h3>
 	        <div style="display: flex" >
 	            <p>

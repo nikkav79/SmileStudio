@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import SpecializationListView
+from .views import NewsFlowListView, NewsFlowDetailsView
+
 
 urlpatterns = [
-    path('team/specializations/', SpecializationListView.as_view())
+    path('NewsFlow/', NewsFlowListView.as_view()),
+    path('NewsFlow/<str:slug>/', NewsFlowDetailsView.as_view())
 ]

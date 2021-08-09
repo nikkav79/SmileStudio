@@ -29,7 +29,12 @@ urlpatterns = [
     path('reviews/', include('reviews.urls')),
     path('team/', include('team.urls')),
     path('vacancy/', include('work.urls')),
+    path('contacts/', include('contacts.urls')),
+    path('rent/', include('rent.urls')),
+
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include('api_service.urls')),
+
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
 ]

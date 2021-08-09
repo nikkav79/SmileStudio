@@ -1,6 +1,6 @@
 [
   {
-    "model": "about.ContactDetails",
+    "model": "contacts.ContactDetails",
     "pk": 1,
     "fields": {
       "city": "Москва",
@@ -19,7 +19,7 @@
     }
   },
   {
-    "model": "about.SocialNetworks",
+    "model": "contacts.SocialNetworks",
     "pk": 1,
     "fields": {
       "name": "ВКонтакте",
@@ -27,7 +27,7 @@
     }
   },
     {
-    "model": "about.SocialNetworks",
+    "model": "contacts.SocialNetworks",
     "pk": 2,
     "fields": {
       "name": "Instagram",
@@ -35,7 +35,7 @@
     }
   },
     {
-    "model": "about.SocialNetworks",
+    "model": "contacts.SocialNetworks",
     "pk": 3,
     "fields": {
       "name": "WhatsApp",
@@ -43,7 +43,7 @@
     }
   },
     {
-    "model": "about.SocialNetworks",
+    "model": "contacts.SocialNetworks",
     "pk": 4,
     "fields": {
       "name": "Telegram",
@@ -51,7 +51,7 @@
     }
   },
     {
-    "model": "about.SocialNetworks",
+    "model": "contacts.SocialNetworks",
     "pk": 5,
     "fields": {
       "name": "Facebook",
