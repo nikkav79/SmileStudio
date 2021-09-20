@@ -1,0 +1,32 @@
+{% load static %}
+
+{% block navigation %}
+
+<!-- Компонент навигационного меню -->
+<div class="navbar-component">
+	<!-- Контейнер -->
+	<div class="navbar area">
+		<!-- Логотип -->
+		<a href="#" class="brand">Brand</a>
+		<!-- Список ссылок -->
+		<nav role="navigation" id="navigation" class="list">
+			<a class="item-link" href="">О нас</a>
+			<a class="item-link" href="{% url 'lessons_age_groups_url' %}">Занятия и стоимость</a>
+			<a class="item-link" href="">Расписание</a>
+			<a class="item-link" href="{% url 'rent_url' %}">Аренда</a>
+			<a class="item-link" href="{% url 'media_url' %}">Галерея</a>
+			<a class="item-link" href="{% url 'news_posts_url' %}">Новости</a>
+			<a class="item-link" href="{% url 'contacts_url' %}">Контакты</a>
+			<span class="item">
+                <i class="fa fa-search"></i>
+            </span>
+		</nav>
+		<!-- Кнопка для мобильных -->
+		<button data-collapse data-target="#navigation" class="toggle">
+            <!-- Здесь будет иконка -->
+            <span class="icon"></span>
+		</button>
+	</div>
+</div>
+
+{% endblock %}

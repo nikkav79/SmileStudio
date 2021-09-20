@@ -1,26 +1,37 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block title %}
-	Новости
+Новости
 {% endblock %}
 
 {% block body %}
 	<h1>Новости</h1>
-
-	{% for item in news %}
-
-		<div class="card mb-4">
-            <div class="card-header">
-                {{ item.created }}
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ item.title }}</h5>
-                <p class="card-text">{{ item.digest }}</p>
-	            <a href="{{ item.get_absolute_url }}" class="btn btn-success">Подробнее</a>
-            </div>
+	
+	
+	<div class="container">
+		<div class="row row-cols-4">
+			{% for item in news %}
+			<div class="col">
+				<div class="card"
+				     style="width: 18rem;">
+					<img src="{{ item.picture.url }}"
+					     class="card-img-top"
+					     alt="  ">
+					<div class="card-body">
+						<h5 class="card-title">{{ item.title }}</h5>
+						<p class="card-text">{{ item.digest }}</p>
+						<p class="card-text">{{ item.created }}</p>
+					</div>
+					<div class="card-body">
+						<a href="{{ item.get_absolute_url }}"
+						   class="btn btn-outline-warning">Подробнее</a>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
 		</div>
-		 <br>
+	</div>
 
-	{% endfor %}
 {% endblock %}

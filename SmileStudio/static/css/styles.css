@@ -1,0 +1,75 @@
+{% load static %}
+
+*, *:before, *:after { box-sizing: border-box; } /*говорит браузеру учитывать любые границы и внутренние отступы в значениях, которые вы указываете в ширине и высоте элемента.*/
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    font-size: 14px; /* Размер шрифта */
+    font-family: url('{% static 'fonts/Roboto-Thin.ttf' %}'); /* Подключение шрифта */
+    font-weight: 100; /* Толщина шрифта */
+    /* font-style: italic; /* Стиль написания шрифта */
+}
+
+a {
+    text-decoration: none; /* Отменяет все эффекты, в том числе и подчеркивания у ссылок, которое задано по умолчанию. */
+    transition: all 0.3s linear 0s; /* Устанавливает эффект перехода между двумя состояниями элемента, они могут быть определены с помощью псевдоэлемента :hover или :active, а также динамически через JavaScript. */
+}
+
+.area {
+    /* блок-контейнер */
+    display: flex;
+    border: 1px solid;
+    /* центрируем */
+    margin-right: auto;
+    margin-left: auto;
+    /* устанавливаем главную ось и многострочность контейнера */
+    flex-flow: row wrap;
+    /* Расположение элементов относительно поперечной оси на строке */
+    align-item: stretch;
+}
+/* Медиавыражения для типовых размеров */
+@media (min-width: 768px) { width: 750px; }
+@media (min-width: 992px) { width: 970px; }
+@media (min-width: 1200px) { width: 1140px; }
+
+/* Визуальные стили для разрабатываемого компонента нав. меню */
+.navbar-component {
+    /* background-color: var(--color-primary); */
+    /* Добавление теней */
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12); */
+}
+
+.navbar-component .navbar  {
+    /* Выравнивание относительно главной оси равномерное */
+        justify-content: between;
+}
+
+/* Стилизация основных элементов контента */
+/* Основные стили для пунктов меню */
+/* Компонент */
+.navbar .list {
+    /* Создаем контейнер */
+    display: flex;
+    border: 1px solid;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.navbar .list .item {
+    display: block;
+    /* Возможность элемента сужаться. Запрещено */
+    flex-shrink: 0;
+
+    /* Выравнивание и отсутпы */
+
+    text-transform: uppercase;
+
+}
+
+.navbar .list .item-link {
+
+}
+
+
+

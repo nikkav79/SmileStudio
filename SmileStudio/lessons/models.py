@@ -37,7 +37,8 @@ class Lessons(models.Model):
     name = models.ForeignKey(LessonsType, verbose_name='Занятие', on_delete=models.CASCADE, null=True)
     team_member = models.ForeignKey(Team, verbose_name='Преподаватель', on_delete=models.CASCADE, null=True)
     cost = models.ManyToManyField('CostsParam', verbose_name='Цена')
-    days = models.ManyToManyField('WeekDays', through='TimeTable', through_fields=('lessons', 'days'),
+    days = models.ManyToManyField('WeekDays', through='TimeTable',
+                                  through_fields=('lessons', 'days'),
                                   verbose_name='Расписание')
     is_active = models.BooleanField(default=True, verbose_name='Актив')
 
@@ -58,8 +59,8 @@ class CostsParam(models.Model):
                     ('i', 'Индивидуальное'),
                     )
     PAYMENT_FORMAT = (('a', 'Абонемент'),
-                    ('r', 'Разовое занятие'),
-                    )
+                      ('r', 'Разовое занятие'),
+                      )
     format = models.CharField(max_length=1, choices=FORMAT, verbose_name='Место проведения')
     payment_fromat = models.CharField(max_length=1, choices=PAYMENT_FORMAT, verbose_name='Формат оплаты')
     form_lesson = models.CharField(max_length=1, choices=FORM_LESSONS, verbose_name='Форма проведения')
@@ -73,6 +74,7 @@ class CostsParam(models.Model):
         ordering = ['cost']
         verbose_name = 'Параметры занятия'
         verbose_name_plural = 'Параметры занятия'
+
 
 class WeekDays(models.Model):
     """Дни недели"""
@@ -90,4 +92,3 @@ class TimeTable(models.Model):
     days = models.ForeignKey(WeekDays, on_delete=models.CASCADE, null=True)
     lessons = models.ForeignKey(Lessons, on_delete=models.CASCADE, null=True)
     time_start = models.TimeField(default='12:00:00')
-

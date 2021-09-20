@@ -6,25 +6,33 @@ from django.shortcuts import get_object_or_404
 from .utils import ObjectDetailMixin
 
 
-class NewsDetails(ObjectDetailMixin, View):
-    model = NewsFlow
-    template = 'news/news_details.html'
+# class NewsDetails(ObjectDetailMixin, View):
+#     model = NewsFlow
+#     template = 'news/news_details.html'
 
-# class NewsDetails(View):
-#     def get(self, request, slug):
-#         item = get_object_or_404(NewsFlow, slug__iexact=slug)
-#         return render(request,
-#                       template_name='news/news_details.html',
-#                       context={'item': item
-#                                })
+class NewsDetails(View):
+    def get(self, request, slug):
+        details = get_object_or_404(NewsFlow, slug__iexact=slug)
+        return render(request,
+                      template_name='news/news_details.html',
+                      context={'details': details
+                               })
 
 
-def news(request):
-    news = NewsFlow.objects.all()
-    return render(request,
-                  template_name='news/news.html',
-                  context={'news': news
-                           })
+class News(View):
+    def get(self, request):
+        news = NewsFlow.objects.all()
+        return render(request,
+                      template_name='news/news.html',
+                      context={'news': news
+                               })
+
+# def news(request):
+#     news = NewsFlow.objects.all()
+#     return render(request,
+#                   template_name='news/news.html',
+#                   context={'news': news
+#                            })
 
 # def news_details(request, slug):
 #     item = NewsFlow.objects.get(slug__iexact=slug)

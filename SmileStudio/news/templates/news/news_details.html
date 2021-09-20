@@ -1,26 +1,38 @@
 {% extends 'base.html' %}
 
 {% block title %}
-	{{ news.title }}
+{{ news.title }}
 {% endblock %}
 
 {% block body %}
-	
-	{% block item %}
-			
-			<div class="card mb-4">
-	            <div class="card-header">
-	                {{ item.created }}
-	            </div>
-	            <div class="card-body">
-	                <h5 class="card-title">{{ item.title }}</h5>
-	                <p class="card-text">{{ item.content }}</p>
-	                <p class="card-text">{{ item.author }}</p>
-	            </div>
-			</div>
-			 <br>
 
-	<a href="{% url 'news_posts_url' %}" class="btn btn-success">Вернуться к разделу Новости</a>
+{% block item %}
 
-	{% endblock %}
+<div class="card mb-4">
+	<div class="card-header">
+		{{ details.created }}
+	</div>
+	<div class="card-body">
+		<h5 class="card-title">{{ details.title }}</h5>
+		<p class="card-text">{{ details.content_main }}</p>
+		<p class="card-text">{{ details.content_additional }}</p>
+		<p class="card-text">{{ details.content_selling }}</p>
+		Для получения детальной информации:
+		<p class="card-text">{{ details.content_contacts }}</p>
+		
+		{% for item in details.media.all %}
+		<img src="{{ item.media_link.url }}"
+		     class="card-img-top"
+		     alt="  ">
+		{% endfor %}
+		
+		<p class="card-text">{{ details.author }}</p>
+	</div>
+</div>
+<br>
+
+<a href="{% url 'news_posts_url' %}"
+   class="btn btn-outline-warning">Вернуться к разделу Новости</a>
+
+{% endblock %}
 {% endblock %}

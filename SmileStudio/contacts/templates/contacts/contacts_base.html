@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+	Контакты
+{% endblock %}
+
+{% block body %}
+	{% block contacts %}
+		{% for contact in contacts %}
+			{{ contact.city }}
+		{% endfor %}
+	{% endblock %}
+
+	{% block soc_networks %}
+		{% for network in soc_networks %}
+			{{ network.link }}
+		{% endfor %}
+	{% endblock %}
+
+
+{% endblock %}
